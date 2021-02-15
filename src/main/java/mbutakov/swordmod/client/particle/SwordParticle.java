@@ -26,7 +26,7 @@ public class SwordParticle extends EntityFX {
    public int blendmode;
    public EntityPlayer player;
 
-   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, float red, float green, float blue) {
+   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, float red, float green, float blue,boolean leftHand) {
       super(world, d, d1, d2, 0.0D, 0.0D, 0.0D);
       this.shrink = false;
       this.tinkle = false;
@@ -56,8 +56,8 @@ public class SwordParticle extends EntityFX {
       
    }
    
-   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, int type) {
-      this(world,player, d, d1, d2, f, 0.0F, 0.0F, 0.0F);
+   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, int type,boolean leftHand) {
+      this(world,player, d, d1, d2, f, 0.0F, 0.0F, 0.0F,leftHand);
       switch(type) {
       case 0:
          super.particleRed = 0.75F + world.rand.nextFloat() * 0.25F;
@@ -99,20 +99,25 @@ public class SwordParticle extends EntityFX {
    }
 
 	public SwordParticle(World world, EntityPlayer player, double d, double d1, double d2, double x, double y, double z,
-			float f, int type) {
-		this(world, player, d, d1, d2, f, type);
+			float f, int type,boolean leftHand) {
+		this(world, player, d, d1, d2, f, type,leftHand);
 		if (super.particleMaxAge > 0) {
 			double dx = x - super.posX;
 			double dy = y - super.posY;
 			double dz = z - super.posZ;
-			dx -= 1.5f * Math.sin(player.renderYawOffset / 180.0F * Math.PI);
-			dz += 1.5f * Math.cos(player.renderYawOffset / 180.0F * Math.PI);
+			dx -= 2f * Math.sin(player.renderYawOffset / 180.0F * Math.PI);
+			dz += 2f * Math.cos(player.renderYawOffset / 180.0F * Math.PI);
 			super.motionX = dx / (double) super.particleMaxAge;
 			super.motionY = dy / (double) super.particleMaxAge;
 			super.motionZ = dz / (double) super.particleMaxAge;
 			double pp = Math.toRadians(player.renderYawOffset);
-			posX -= Math.cos(pp) * 0.34f;
-			posZ -= Math.sin(pp) * 0.34f;
+			if(leftHand == true) {
+				posX -= -Math.cos(pp) * 0.34f;
+				posZ -= -Math.sin(pp) * 0.34f;
+			}else {
+				posX -= Math.cos(pp) * 0.34f;
+				posZ -= Math.sin(pp) * 0.34f;
+			}
 		}
 	}
 

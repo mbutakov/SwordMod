@@ -28,8 +28,6 @@ public class EntityParticleFireFx extends EntityFX {
         super.posX = super.posX * 0.009999999776482582D + parMotionX;
         super.posY = super.posY * 0.009999999776482582D + parMotionY;
         super.posZ = super.posZ * 0.009999999776482582D + parMotionZ;
-        
-        
         super.particleRed = super.particleGreen = super.particleBlue = 1.0F;
         super.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D)) + 4;
         setLocationAndAngles(player.posX + 1, player.posY, player.posZ, player.rotationYaw, player.rotationPitch);  

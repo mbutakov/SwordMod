@@ -40,7 +40,6 @@ public class RenderItemSwordIdk implements IItemRenderer {
 	
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack is, Object... data) {
-		RenderHelper.disableStandardItemLighting();
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityClientPlayerMP Cplayer = mc.thePlayer;
 		GL11.glPushMatrix();
@@ -59,22 +58,34 @@ public class RenderItemSwordIdk implements IItemRenderer {
 				double posZ = eop.posZ;
 				World world1 = eop.worldObj;
 				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.9f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1), (double)((float)posZ), 0.2F,((Sword)eop.getHeldItem().getItem()).getColorEffect(), true, -1f);
+					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((Sword)eop.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
 				}
 				//блок меча для клиента у другого человека
 				if (eop.getHeldItem() != null) {
 					if (eop.isBlocking()) {
-						GL11.glRotatef(30, 0, 0, 1);
-						GL11.glTranslatef(0f, -0.4f, 0);
+						GL11.glRotatef(25, 0, 0, 1);
+						GL11.glRotatef(25, 1, 0, 0);
+						GL11.glTranslatef(0.3f, -0.1f, -0f);
+					}
+				}
+			}
+		}
+		double posX = Cplayer.posX;
+		double posY = Cplayer.posY;
+		double posZ = Cplayer.posZ;
+		if(mc.gameSettings.thirdPersonView != 0) {
+			if(Cplayer.getHeldItem() != null) {
+				if(Cplayer.getHeldItem().getItem() instanceof Sword) {
+					if(Cplayer.ticksExisted % 2  == 0) {
+						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((Sword)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
 					}
 				}
 			}
 		}
 		GL11.glPushMatrix();
-		RenderHelper.disableStandardItemLighting();
-		GL11.glScalef(1.25f, 1.25f, 1.25f);
-		if(type ==ItemRenderType.EQUIPPED ) {
-			GL11.glTranslatef(0.85F, 0.1F, 0.9F);
+		GL11.glScalef(2.1f, 2.1f, 2.1f);
+		if (type == ItemRenderType.EQUIPPED) {
+			GL11.glTranslatef(0.55F, -0.05F, 0.6F);
 			GL11.glRotatef(40, 0, 1, 0);
 			GL11.glRotatef(-40, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
@@ -97,6 +108,5 @@ public class RenderItemSwordIdk implements IItemRenderer {
 		mbResourceLocation.IdkBlade.renderAll();
 		GL11.glPopMatrix();
 		GL11.glPopMatrix();
-		RenderHelper.enableStandardItemLighting();
 	}
 }

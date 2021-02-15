@@ -1,7 +1,9 @@
 package mbutakov.swordmod;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.СharacteristicSword;
 import net.minecraft.item.Item;
 
 public class mbItemRegister {
@@ -16,14 +18,23 @@ public class mbItemRegister {
 	public static Item IdkBlade;
 	
 	public static void registerItems() {
-		ItemSwordBleach = new Sword("abv", "Bleach Sword",50,10,1.2f, new int[] {6});
-		ItemSwordBleach2 = new Sword("abv", "Bleach Sword 2",49,30,1.5f, new int[] {2});
-		ItemSwordBleach3 = new Sword("abv", "Bleach Sword 3",48,40,1.3f, new int[] {3});
-		ItemSwordBleach4 = new Sword("abv", "Bleach Sword 4",47,5,1.7f, new int[] {4});
-		ItemSwordBleach5 = new Sword("abv", "Bleach Sword 5",46,35,2.5f, new int[] {5});
-		ItemSwordBleach6 = new Sword("abv", "Bleach Sword 6",45,65,1.9f, new int[] {6});
-		CyanBlade = new Sword("abv", "Cyan blade",44,24,1.1f,new int[] {3});
-		IdkBlade = new Sword("abv", "idk blade",43,31,1.15f,new int[] {5});
+		//название текстуры иконки/ Название меча / урон /шанс крита(от 0 до 100%)/коофицент крита от основного урона/номер эффекта.
+		ItemSwordBleach = new Sword("sword1", "Bleach Sword",new СharacteristicSword(50,10,0.2f), new int[] {6});
+		LanguageRegistry.addName(ItemSwordBleach, "Bleach Sword");
+		ItemSwordBleach2 = new Sword("sword2", "Bleach Sword 2",new СharacteristicSword(49,30,0.5f), new int[] {2});
+		LanguageRegistry.addName(ItemSwordBleach2, "Bleach Sword 2");
+		ItemSwordBleach3 = new Sword("sword3", "Bleach Sword 3",new СharacteristicSword(48,40,0.3f), new int[] {3});
+		LanguageRegistry.addName(ItemSwordBleach3, "Bleach Sword 3");
+		ItemSwordBleach4 = new Sword("sword4", "Bleach Sword 4",new СharacteristicSword(47,5,0.7f), new int[] {4});
+		LanguageRegistry.addName(ItemSwordBleach4, "Bleach Sword 4");
+		ItemSwordBleach5 = new Sword("sword5", "Bleach Sword 5",new СharacteristicSword(46,35,0.5f), new int[] {5});
+		LanguageRegistry.addName(ItemSwordBleach5, "Bleach Sword 5");
+		ItemSwordBleach6 = new Sword("sword6", "Bleach Sword 6",new СharacteristicSword(45,65,0.9f), new int[] {6});
+		LanguageRegistry.addName(ItemSwordBleach6, "Bleach Sword 6");
+		CyanBlade = new Sword("sword7", "Cyan blade",new СharacteristicSword(44,24,0.1f),new int[] {1});
+		LanguageRegistry.addName(CyanBlade, "Cyan Blade");
+		IdkBlade = new Sword("sword8", "idk blade",new СharacteristicSword(43,31,0.15f),new int[] {5});
+		LanguageRegistry.addName(IdkBlade, "IDK Blade");
 		
 	}
 

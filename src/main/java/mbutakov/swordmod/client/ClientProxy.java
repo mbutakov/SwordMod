@@ -58,11 +58,11 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	@Override
-	public void spawnEffectSword(World worldObj,EntityPlayer player, double posX, double posY, double posZ, double posX2, double posY2, double posZ2, float size, int type, boolean shrink, float gravity)
+	public void spawnEffectSword(World worldObj,EntityPlayer player, double posX, double posY, double posZ, double posX2, double posY2, double posZ2, float size, int type, boolean shrink, float gravity,boolean leftHand)
 	{
 	if(!Minecraft.getMinecraft().isGamePaused()) {
 		if(SwordModConfig.isOffOtherPlayer != 1) {
-			SwordParticle ef11 = new SwordParticle(worldObj, player, posX, posY, posZ, posX2, posY2, posZ2, size, type);
+			SwordParticle ef11 = new SwordParticle(worldObj, player, posX, posY, posZ, posX2, posY2, posZ2, size, type,leftHand);
 			ef11.setGravity(gravity);
 			ef11.shrink = shrink;
 			Minecraft.getMinecraft().effectRenderer.addEffect(ef11);
