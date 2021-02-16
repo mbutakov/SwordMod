@@ -2,6 +2,7 @@ package mbutakov.swordmod.client.handlers;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
@@ -13,13 +14,15 @@ import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.ClientProxy;
 import mbutakov.swordmod.client.mbResourceLocation;
 import mbutakov.swordmod.client.gui.GuiOptionsSwordMod;
-import mbutakov.swordmod.client.render.RenderItemSword;
+import mbutakov.swordmod.client.render.RenderItemSwordBleach;
 import mbutakov.swordmod.common.items.Sword;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
@@ -27,11 +30,6 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import scala.util.continuations.cpsMinus;
 
 public class ClientEvents {
-
-	@SubscribeEvent
-	public void tickers(TickEvent.RenderTickEvent event) {
-		RenderItemSword.renderTicks = event.renderTickTime;
-	}
 
 	@SubscribeEvent
 	public void keyPress(KeyInputEvent event) {
@@ -78,9 +76,9 @@ public class ClientEvents {
 					GL11.glTranslatef(0f, -0f, 0f);
 				}
 				Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleach4Tex);
-				GL11.glRotatef(-130, 1, 0, 0);
+				GL11.glRotatef(-105, 1, 0, 0);
 				GL11.glRotatef(0, 0, 0, 1);
-				GL11.glTranslatef(0.1f, -0.74f, 0.6f);
+				GL11.glTranslatef(0.1f, -0.5f, 0.7f);
 				mbResourceLocation.SwordBleach4.renderAll();
 				GL11.glPopMatrix();
 			}
@@ -101,11 +99,15 @@ public class ClientEvents {
 					GL11.glTranslatef(0f, -0f, 0f);
 				}
 				Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.IdkBladeTex);
-				GL11.glRotatef(-130, 1, 0, 0);
+				GL11.glRotatef(-105, 1, 0, 0);
 				GL11.glRotatef(0, 0, 0, 1);
-				GL11.glTranslatef(0.1f, -0.74f, 0.6f);
+				GL11.glTranslatef(0.1f, -0.45f, 0.7f);
 				mbResourceLocation.IdkBlade.renderAll();
+				
+		        
+		        
 				GL11.glPopMatrix();
+				
 			}
 		}
 	}

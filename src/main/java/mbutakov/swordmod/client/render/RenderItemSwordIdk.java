@@ -58,7 +58,7 @@ public class RenderItemSwordIdk implements IItemRenderer {
 				double posZ = eop.posZ;
 				World world1 = eop.worldObj;
 				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((Sword)eop.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,2, true, -1f,false);
 				}
 				//блок меча для клиента у другого человека
 				if (eop.getHeldItem() != null) {
@@ -85,9 +85,9 @@ public class RenderItemSwordIdk implements IItemRenderer {
 		GL11.glPushMatrix();
 		GL11.glScalef(2.1f, 2.1f, 2.1f);
 		if (type == ItemRenderType.EQUIPPED) {
-			GL11.glTranslatef(0.55F, -0.05F, 0.6F);
+			GL11.glTranslatef(0.65F, 0.1F, 0.70F);
 			GL11.glRotatef(40, 0, 1, 0);
-			GL11.glRotatef(-40, 1, 0, 0);
+			GL11.glRotatef(-70, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
 			GL11.glRotatef(-10, 1, 0, 1);

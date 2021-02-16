@@ -142,9 +142,6 @@ public class PortalParticle extends EntityFX {
       super.prevPosX = this.posX;
       super.prevPosY = this.posY;
       super.prevPosZ = this.posZ;
-      if(super.particleAge == 0 && this.tinkle && super.worldObj.rand.nextInt(3) == 0) 
-      {
-      }
       if(super.particleAge++ >= super.particleMaxAge) {
          this.setDead();
       }

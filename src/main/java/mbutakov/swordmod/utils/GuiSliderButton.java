@@ -58,7 +58,7 @@ public class GuiSliderButton extends GuiButton {
     			listener.mouseDragged(this);
     		
         	if(!Mouse.isButtonDown(0)){
-        		this.func_146111_b(0, 0);
+        		this.mouseReleased(0, 0);
         	}
         }
 
@@ -97,7 +97,7 @@ public class GuiSliderButton extends GuiButton {
     }
 	
 	@Override
-    public void func_146111_b(int par1, int par2)
+    public void mouseReleased(int par1, int par2)
     {
         this.dragging = false;
         

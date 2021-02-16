@@ -1,33 +1,26 @@
 package mbutakov.swordmod.client;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import mbutakov.swordmod.Main;
 import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.config.SwordModConfig;
+import mbutakov.swordmod.client.gui.GuiBlockChangeSkin;
 import mbutakov.swordmod.client.handlers.ClientEvents;
 import mbutakov.swordmod.client.particle.SwordParticle;
-import mbutakov.swordmod.client.render.RenderItemSword;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach2;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach3;
-import mbutakov.swordmod.client.render.RenderItemSwordBleach4;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach5;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach6;
 import mbutakov.swordmod.client.render.RenderItemSwordCyan;
 import mbutakov.swordmod.client.render.RenderItemSwordIdk;
 import mbutakov.swordmod.common.CommonProxy;
-import mbutakov.swordmod.common.entity.EntityParticleFireFx;
-import mbutakov.swordmod.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.settings.KeyBinding;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -45,7 +38,6 @@ public class ClientProxy extends CommonProxy {
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach, new RenderItemSwordBleach());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach2, new RenderItemSwordBleach2());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach3, new RenderItemSwordBleach3());
-		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach4, new RenderItemSwordBleach4());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach5, new RenderItemSwordBleach5());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach6, new RenderItemSwordBleach6());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.CyanBlade, new RenderItemSwordCyan());

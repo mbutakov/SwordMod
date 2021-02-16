@@ -86,9 +86,9 @@ public class RenderItemSwordBleach3 implements IItemRenderer {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glScalef(2.25f, 2.25f, 2.25f);
 		if(type ==ItemRenderType.EQUIPPED ) {
-			GL11.glTranslatef(0.55F, -0.15F, 0.6F);
+			GL11.glTranslatef(0.65F, 0.05F, 0.70F);
 			GL11.glRotatef(40, 0, 1, 0);
-			GL11.glRotatef(-40, 1, 0, 0);
+			GL11.glRotatef(-70, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
 			GL11.glRotatef(-10, 1, 0, 1);

@@ -45,7 +45,7 @@ public class GuiUtils
     
     public static void renderCenteredText(final String text, final int posX, final int posY, final int par4) {
         final Minecraft mc = Minecraft.getMinecraft();
-        mc.fontRenderer.drawString(text, posX - mc.fontRenderer.getStringWidth(text) / 2, posY, par4);
+        mc.fontRendererObj.drawString(text, posX - mc.fontRendererObj.getStringWidth(text) / 2, posY, par4);
     }
     
     
@@ -143,7 +143,7 @@ public class GuiUtils
     
     public static void renderCenteredTextWithShadow(final String text, final int posX, final int posY, final int par4) {
         final Minecraft mc = Minecraft.getMinecraft();
-        mc.fontRenderer.drawStringWithShadow(text, posX - mc.fontRenderer.getStringWidth(text) / 2, posY, par4);
+        mc.fontRendererObj.drawStringWithShadow(text, posX - mc.fontRendererObj.getStringWidth(text) / 2, posY, par4);
     }
     
     public static void renderText(final String text, final int posX, final int posY) {
@@ -160,12 +160,12 @@ public class GuiUtils
     
     public static void renderText(final String text, final int posX, final int posY, final int color) {
         final Minecraft mc = Minecraft.getMinecraft();
-        mc.fontRenderer.drawString(text, posX, posY, color);
+        mc.fontRendererObj.drawString(text, posX, posY, color);
     }
     
     public static void drawTextWithOutline(final String text, final int x, final int y, final int color) {
         final Minecraft mc = Minecraft.getMinecraft();
-        final FontRenderer fr = mc.fontRenderer;
+        final FontRenderer fr = mc.fontRendererObj;
         fr.drawString(text, x - 1, y + 1, 0);
         fr.drawString(text, x, y + 1, 0);
         fr.drawString(text, x + 1, y + 1, 0);
@@ -181,7 +181,7 @@ public class GuiUtils
         final Minecraft mc = Minecraft.getMinecraft();
         final EntityPlayer player = (EntityPlayer)mc.thePlayer;
         GL11.glPushMatrix();
-        final FontRenderer fontrenderer = mc.fontRenderer;
+        final FontRenderer fontrenderer = mc.fontRendererObj;
         final float f122 = 1.8f;
         final float scale2 = 0.02f;
         final double d0 = player.lastTickPosX + (player.posX - player.lastTickPosX) * par5;
@@ -202,48 +202,48 @@ public class GuiUtils
     
     public static void renderCenteredTextScaled(final String text, final int posX, final int posY, final double par4, final int givenColor) {
         final Minecraft mc = Minecraft.getMinecraft();
-        final double width = mc.fontRenderer.getStringWidth(text) / 2 * par4;
+        final double width = mc.fontRendererObj.getStringWidth(text) / 2 * par4;
         GL11.glPushMatrix();
         GL11.glTranslated(posX - width, (double)posY, 0.0);
         GL11.glScaled(par4, par4, par4);
-        mc.fontRenderer.drawString(text, 0, 0, givenColor);
+        mc.fontRendererObj.drawString(text, 0, 0, givenColor);
         GL11.glPopMatrix();
     }
     
     public static void renderCenteredTextScaledWithOutlineFade(final String text, final int posX, final int posY, final double par4, final int givenColor, final int givenFade) {
         final Minecraft mc = Minecraft.getMinecraft();
-        final double width = mc.fontRenderer.getStringWidth(text) / 2 * par4;
+        final double width = mc.fontRendererObj.getStringWidth(text) / 2 * par4;
         GL11.glPushMatrix();
         GL11.glColor4f(255.0f, 255.0f, 255.0f, (float)givenFade);
         GL11.glTranslated(posX - width, (double)posY, 0.0);
         GL11.glScaled(par4, par4, par4);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, 1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, 1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 0, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, 0, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, 0, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 0, 1, 0);
-        mc.fontRenderer.drawString(text, 0, 0, givenColor);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, 1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, 1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 0, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, 0, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, 0, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 0, 1, 0);
+        mc.fontRendererObj.drawString(text, 0, 0, givenColor);
         GL11.glPopMatrix();
     }
     
     public static void renderCenteredTextScaledWithOutline(final String text, final int posX, final int posY, final double par4, final int givenColor) {
         final Minecraft mc = Minecraft.getMinecraft();
-        final double width = mc.fontRenderer.getStringWidth(text) / 2 * par4;
+        final double width = mc.fontRendererObj.getStringWidth(text) / 2 * par4;
         GL11.glPushMatrix();
         GL11.glTranslated(posX - width, (double)posY, 0.0);
         GL11.glScaled(par4, par4, par4);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, 1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, 1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 0, -1, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, -1, 0, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 1, 0, 0);
-        mc.fontRenderer.drawString(EnumChatFormatting.BLACK + text, 0, 1, 0);
-        mc.fontRenderer.drawString(text, 0, 0, givenColor);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, 1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, 1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 0, -1, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, -1, 0, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 1, 0, 0);
+        mc.fontRendererObj.drawString(EnumChatFormatting.BLACK + text, 0, 1, 0);
+        mc.fontRendererObj.drawString(text, 0, 0, givenColor);
         GL11.glPopMatrix();
     }
     
@@ -257,19 +257,19 @@ public class GuiUtils
     
     public static void renderTextWithShadow(final String text, final int posX, final int posY, final int color) {
         final Minecraft mc = Minecraft.getMinecraft();
-        mc.fontRenderer.drawStringWithShadow(text, posX, posY, color);
+        mc.fontRendererObj.drawStringWithShadow(text, posX, posY, color);
     }
     
     public static void renderSplitText(final String text, final int posX, final int posY, final int wrapWidth, final int color) {
         final Minecraft mc = Minecraft.getMinecraft();
-        mc.fontRenderer.drawSplitString(text, posX, posY, wrapWidth, color);
+        mc.fontRendererObj.drawSplitString(text, posX, posY, wrapWidth, color);
     }
     
     public static void renderItemStackIntoGUI(final ItemStack itemstack, final int posX, final int posY) {
         GL11.glPushMatrix();
         final RenderItem itemRenderer = new RenderItem();
         itemRenderer.renderWithColor = true;
-        itemRenderer.renderItemIntoGUI(Minecraft.getMinecraft().fontRenderer, Minecraft.getMinecraft().getTextureManager(), itemstack, posX, posY);
+        itemRenderer.renderItemIntoGUI(Minecraft.getMinecraft().fontRendererObj, Minecraft.getMinecraft().getTextureManager(), itemstack, posX, posY);
         itemRenderer.renderWithColor = false;
         GL11.glDisable(2896);
         GL11.glPopMatrix();

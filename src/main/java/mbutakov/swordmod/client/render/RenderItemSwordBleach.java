@@ -2,6 +2,7 @@ package mbutakov.swordmod.client.render;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import mbutakov.swordmod.Main;
 import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.mbResourceLocation;
@@ -9,6 +10,7 @@ import mbutakov.swordmod.common.items.Sword;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -20,7 +22,8 @@ import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 public class RenderItemSwordBleach implements IItemRenderer {
 
-	
+	  private static final ResourceLocation RES_ITEM_GLINT = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+	  
 	public RenderItemSwordBleach() {
 	}
 	
@@ -88,9 +91,9 @@ public class RenderItemSwordBleach implements IItemRenderer {
     		GL11.glPushMatrix();
     			GL11.glScalef(2.5f, 2.5f, 2.5f);
     			if (type == ItemRenderType.EQUIPPED) {
-    				GL11.glTranslatef(0.55F, -0.15F, 0.6F);
+    				GL11.glTranslatef(0.65F, 0.05F, 0.70F);
     				GL11.glRotatef(40, 0, 1, 0);
-    				GL11.glRotatef(-40, 1, 0, 0);
+    				GL11.glRotatef(-70, 1, 0, 0);
     				GL11.glRotatef(180, 0, 1, 0);
     			} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
     				GL11.glRotatef(-10, 1, 0, 1);
@@ -107,9 +110,43 @@ public class RenderItemSwordBleach implements IItemRenderer {
     			if (type == ItemRenderType.ENTITY) {
     				GL11.glScalef(0.8f, 0.8f, 0.8f);
     			}
-    			Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleachTex);
-    			mbResourceLocation.SwordBleach.renderAll();
+    			
+  	    			Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleachTex);
+  	    			mbResourceLocation.SwordBleach.renderAll();
+//  	    			GL11.glPushMatrix();
+//			        GL11.glDepthFunc(514);
+//			        GL11.glDisable(2896);
+//			        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("textures/misc/enchanted_item_glint.png"));
+//			        GL11.glEnable(3042);
+//			        GL11.glBlendFunc(768, 1);
+//			        float f7 = 0.76F;
+//			        GL11.glColor4f(0.2F * f7, 0.1F * f7, 1F * f7, 1.0F);
+//			        GL11.glMatrixMode(5890);
+//			        GL11.glPushMatrix();
+//			        float f8 = 0.125F;
+//			        GL11.glScalef(f8, f8, f8);
+//			        float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 8.0F;
+//			        GL11.glTranslatef(f9, 0.0F, 0.0F);
+//					mbResourceLocation.SwordBleach.renderAll();
+//			        GL11.glPopMatrix();
+//			        GL11.glPushMatrix();
+//			        GL11.glScalef(f8, f8, f8);
+//			        f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 8.0F;
+//			        GL11.glTranslatef(-f9, 0.0F, 0.0F);
+//			        GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
+//			        mbResourceLocation.SwordBleach.renderAll();
+//			        GL11.glPopMatrix();
+//				    GL11.glMatrixMode(5888);
+//					GL11.glPopMatrix();
+//			        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+//			        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+//			        GL11.glEnable(2896);
+//				     GL11.glDepthFunc(515);
+  	    			
+    		          
     			GL11.glPopMatrix();
+    			
+    			
     	}
     	GL11.glPopMatrix();
 		
