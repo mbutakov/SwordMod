@@ -33,6 +33,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
@@ -76,28 +78,6 @@ public class ItemSwordMb extends ItemSword {
 	}
 	
 	
-	public int getCountDamageModule(ItemStack item) {
-		int i1 = 0;
-		if (item.hasTagCompound()) {
-			NBTTagCompound nbt = item.getTagCompound();
-			NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
-		if (!modulesTags.hasNoTags()) {
-			int xx = 0;
-			for (int i = 1; i <= 21; i++) {
-				if (modulesTags.getCompoundTag("module_" + i) != null) {
-					ItemStack module = ItemStack.loadItemStackFromNBT(modulesTags.getCompoundTag("module_" + i));
-					if (module != null) {
-						if(module.getUnlocalizedName().equals("item.Module Damage")){
-							i1++;
-						}
-					}
-				}
-			}
-		}
-		}
-		return i1;
-	}
-	
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean p_77624_4_) {
     	l.add(EnumChatFormatting.GRAY + "Урон: " + EnumChatFormatting.AQUA + (int)(cs.getDamageSword(is)));
@@ -106,36 +86,41 @@ public class ItemSwordMb extends ItemSword {
     	l.add(EnumChatFormatting.DARK_GRAY + "Зажмите shift ");
     	if(Keyboard.isKeyDown(42)) {
     		l.add(EnumChatFormatting.GRAY + "Установленные модули:");
-    		if(is.hasTagCompound()) {
+    		if(cs.hasNbtSwordModules(is)) {
     			NBTTagCompound nbt = is.getTagCompound();
     			NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
-				if (modulesTags.hasNoTags()) {
+				if (cs.getCountModules(is)[2] > 0) {
+					l.add(EnumChatFormatting.AQUA + "Модуль крит кооф " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[2]);
+				}
+				if (cs.getCountModules(is)[0] > 0) {
+					l.add(EnumChatFormatting.AQUA + "Модуль крит шанса " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[0]);
+				}
+				if (cs.getCountModules(is)[1] > 0) {
+					l.add(EnumChatFormatting.AQUA + "Модуль урона " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[1]);
+				}
+				if (cs.getCountModules(is)[3] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль выпадения головы " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[3]);
+				}
+				if (cs.getCountModules(is)[4] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль Слепоты " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[4]);
+				}
+				if (cs.getCountModules(is)[5] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль Отравления " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[5]);
+				}
+				if (cs.getCountModules(is)[6] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль Сплеш атаки 3 " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[6]);
+				}
+				if (cs.getCountModules(is)[7] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль Сплеш атаки 5 " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[7]);
+				}
+				
+				int total = 0;
+				for(int i = 0; i < cs.getCountModules(is).length; i++) {
+					total += cs.getCountModules(is)[i];
+				}
+				if(total == 0) {
 					l.add(EnumChatFormatting.YELLOW + "Отсутствуют");
-					return;
 				}
-				if (cs.getCountCritCfModule(is) > 0) {
-					l.add(EnumChatFormatting.AQUA + "Модуль крит кооф " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountCritCfModule(is));
-				}
-				if (cs.getCountCritModule(is) > 0) {
-					l.add(EnumChatFormatting.AQUA + "Модуль крит шанса " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountCritModule(is));
-
-				}
-				if (cs.getCountDamageModule(is) > 0) {
-					l.add(EnumChatFormatting.AQUA + "Модуль урона " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountDamageModule(is));
-					
-				}
-    			int xx = 0;
-    			for(int i = 1; i <= 21; i++) {
-    				if(modulesTags.getCompoundTag("module_" + i) != null) {
-    					ItemStack module = ItemStack.loadItemStackFromNBT(modulesTags.getCompoundTag("module_" + i));
-    					if(module != null) {
-    						xx = 1;
-    					}
-    				}
-    			}
-    			if(xx == 0) {
-    				l.add(EnumChatFormatting.YELLOW + "Отсутствуют");
-    			}
     		}else {
 				l.add(EnumChatFormatting.YELLOW + "Отсутствуют");
 
@@ -143,22 +128,61 @@ public class ItemSwordMb extends ItemSword {
     	}
     }
 
-    public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker)
-    {
-    	float finalDamage = 0;
-    	float addDamage = 0;
-    	float finalCritDamage = 0;
+	public boolean hitEntity(ItemStack is, EntityLivingBase target, EntityLivingBase attacker) {
 		if (attacker instanceof EntityPlayer) {
-	    	if(cs.getCrit(cs.getCritChance(is)) == true) {
-	    		addDamage = (float) (((itemRand.nextFloat() * cs.getDamageSword(is)) /cs.getDamageSword(is)) * 5);
-	    		finalCritDamage = (float) ((float) addDamage + (cs.getDamageSword(is) * cs.getCritProcent(is)));	
-				target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker),(float) finalCritDamage);
-				((EntityPlayer) attacker).addChatMessage(new ChatComponentText("Вы нанесли крит атаку + " + (int)(finalCritDamage) + " + " + (int)(cs.getDamageSword(is))));
-	    	}
-			
+		} else {
+			return true;
 		}
-        return true;
+		
+		if(cs.getCountModules(is)[5] > 0) {
+		    target.addPotionEffect(new PotionEffect(Potion.poison.id, 200, 2, true));
+		}
+		if(cs.getCountModules(is)[4] > 0) {
+			   target.addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 2, true));
+		}
+		
+		float finalDamage = 0;
+		float addDamage = 0;
+		float finalCritDamage = 0;
+		if (cs.getCrit(cs.getCritChance(is)) == true) {
+			addDamage = (float) (((itemRand.nextFloat() * cs.getDamageSword(is)) / cs.getDamageSword(is)) * 5);
+			finalCritDamage = (float) ((float) addDamage + (cs.getDamageSword(is) * cs.getCritProcent(is)));
+			target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), (float) finalCritDamage);
+			((EntityPlayer) attacker).addChatMessage(new ChatComponentText(
+					"Вы нанесли крит атаку + " + (int) (finalCritDamage) + " + " + (int) (cs.getDamageSword(is))));
+
+		}
+		return true;
+	}
+	
+    public boolean onLeftClickEntity(ItemStack is, EntityPlayer player, Entity entity)
+    {
+        if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).hurtTime == 0 && !((EntityLivingBase)entity).isDead) {
+			if(cs.getCountModules(is)[6] > 0 && cs.getCountModules(is)[7] < 1) {
+				System.out.println("sasd 1");
+	            final int range = 3;
+	            for (final Object obj : player.worldObj.getEntitiesWithinAABB((Class)EntityLivingBase.class, player.boundingBox.expand((double)range, (double)range, (double)range))) {
+	                final EntityLivingBase e = (EntityLivingBase)obj;
+	                if (!obj.equals(player)) {
+	                    e.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)player),( float) cs.getDamageSword(is));
+	                }
+	            }
+			}else if(cs.getCountModules(is)[7] > 0) {
+				System.out.println("sasd");
+	            final int range = 5;
+	            for (final Object obj : player.worldObj.getEntitiesWithinAABB((Class)EntityLivingBase.class, player.boundingBox.expand((double)range, (double)range, (double)range))) {
+	                final EntityLivingBase e = (EntityLivingBase)obj;
+	                if (!obj.equals(player)) {
+	                    e.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)player), (float) cs.getDamageSword(is));
+	                }
+	            }
+			}
+        }
+		
+        return super.onLeftClickEntity(is, player, entity);
     }
+
+    
 	
 	@Override
     public Multimap getItemAttributeModifiers()

@@ -1,10 +1,12 @@
 package mbutakov.swordmod.common;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import mbutakov.swordmod.common.blocks.blockChangeSkin.ContainerBlockChangeSkin;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy {
 
@@ -13,7 +15,9 @@ public class CommonProxy {
 	}
 
 	public void Init() {
-
+		CommonEvents ce = new CommonEvents();
+		MinecraftForge.EVENT_BUS.register(ce);
+		FMLCommonHandler.instance().bus().register(ce);
 	}
 
 	public void spawnEffectSword(World worldObj, EntityPlayer player, double posX, double posY, double posZ,

@@ -35,6 +35,7 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public void Init() {
+		super.Init();
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach, new RenderItemSwordBleach());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach2, new RenderItemSwordBleach2());
 		MinecraftForgeClient.registerItemRenderer(mbItemRegister.ItemSwordBleach3, new RenderItemSwordBleach3());

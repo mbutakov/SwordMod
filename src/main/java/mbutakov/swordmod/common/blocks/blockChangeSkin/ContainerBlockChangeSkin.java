@@ -24,13 +24,13 @@ public class ContainerBlockChangeSkin extends Container {
 	      SlotSword swordSlot = new SlotSword(this.inventory, 0, 9, 48, (SlotSword)null);
 	      this.addSlotToContainer(swordSlot);
 	      for(int col = 0; col < 7; ++col) {
-	             this.addSlotToContainer(new SlotModule(this.inventory,  1 +col, 30 + col * 20, 28 + 0, swordSlot));
+	             this.addSlotToContainer(new SlotModule(this.inventory,  1 +col, 30 + col * 21, 29 + 0, swordSlot));
 	       }
 	      for(int col = 0; col < 7; ++col) {
-	             this.addSlotToContainer(new SlotModule(this.inventory,  8 + col, 30 + col * 20, 28 + 20, swordSlot));
+	             this.addSlotToContainer(new SlotModule(this.inventory,  8 + col, 30 + col * 21, 29 + 20, swordSlot));
 	       }
 	      for(int col = 0; col < 7; ++col) {
-	             this.addSlotToContainer(new SlotModule(this.inventory,  15+ col, 30 + col * 20, 28 + 40, swordSlot));
+	             this.addSlotToContainer(new SlotModule(this.inventory,  15+ col, 30 + col * 21, 29 + 40, swordSlot));
 	       }
 	      
 	      for(int row = 0; row < 3; ++row) {

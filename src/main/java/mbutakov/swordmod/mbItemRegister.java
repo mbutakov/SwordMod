@@ -19,6 +19,11 @@ public class mbItemRegister {
 	public static Item Item_m_damage;
 	public static Item Item_m_crit_chance;
 	public static Item Item_m_crit_cf;
+	public static Item item_m_head;
+	public static Item item_m_splash3;
+	public static Item item_m_splash5;
+	public static Item item_m_posion;
+	public static Item item_m_blind;
 	
 	
 	public static void registerItems() {
@@ -43,7 +48,17 @@ public class mbItemRegister {
 		LanguageRegistry.addName(Item_m_crit_chance, "Модуль увеличения крит шанса");
 		Item_m_crit_cf = new ItemModule("Module CritCf","m_critCf");
 		LanguageRegistry.addName(Item_m_crit_cf, "Модуль увеличения крит коофицента");
-		
+		item_m_head = new ItemModule("Module Head","m_head");
+		LanguageRegistry.addName(item_m_head, "Модуль выпадение головы");
+		item_m_splash3 = new ItemModule("Module Splash 3","m_splash3");
+		LanguageRegistry.addName(item_m_splash3, "Модуль сплеш 3");
+		item_m_splash5 = new ItemModule("Module Splash 5","m_splash5");
+		LanguageRegistry.addName(item_m_splash5, "Модуль сплеш 5");
+		item_m_posion = new ItemModule("Module posion","m_posion");
+		LanguageRegistry.addName(item_m_posion, "Модуль отправления");
+		item_m_blind = new ItemModule("Module Blind","m_eye");
+		LanguageRegistry.addName(item_m_blind, "Модуль слепоты");
+	
 	}
 
 }

@@ -38,7 +38,6 @@ public class GuiBlockChangeSkin extends GuiContainer {
          	GuiUtils.renderCenteredText(swordStack.getDisplayName(), xSize/2, 17, 0x404040);
         }
     }
-    
 	
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
@@ -54,31 +53,31 @@ public class GuiBlockChangeSkin extends GuiContainer {
 		if (itemStack != null && itemStack.getItem() != null) {
 			for (int col = 0; col < 7; ++col) {
 				itemStack = inventorySlots.getSlot(1 + col).getStack();
-				inventorySlots.getSlot(1 + col).yDisplayPosition = 28;
+				inventorySlots.getSlot(1 + col).yDisplayPosition = 29;
 				if (itemStack != null && itemStack.getItem() != null) {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 0 * 20, 194, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 0 * 20, 194, 256, 18, 18);
 				} else {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 0 * 20, 176, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 0 * 20, 176, 256, 18, 18);
 
 				}
 			}
 			for (int col = 0; col < 7; ++col) {
 				itemStack = inventorySlots.getSlot(8 + col).getStack();
-				inventorySlots.getSlot(8 + col).yDisplayPosition = 28 + 20;
+				inventorySlots.getSlot(8 + col).yDisplayPosition = 29 + 20;
 				if (itemStack != null && itemStack.getItem() != null) {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 1 * 20, 194, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 1 * 20, 194, 256, 18, 18);
 				} else {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 1 * 20, 176, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 1 * 20, 176, 256, 18, 18);
 
 				}
 			}
 			for (int col = 0; col < 7; ++col) {
 				itemStack = inventorySlots.getSlot(15 + col).getStack();
-				inventorySlots.getSlot(15 + col).yDisplayPosition = 28 + 40;
+				inventorySlots.getSlot(15 + col).yDisplayPosition = 29 + 40;
 				if (itemStack != null && itemStack.getItem() != null) {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 2 * 20, 194, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 2 * 20, 194, 256, 18, 18);
 				} else {
-					drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + 2 * 20, 176, 256, 16, 16);
+					drawTexturedModalRect(xOrigin + 29 + col * 21, yOrigin + 28 + 2 * 20, 176, 256, 18, 18);
 
 				}
 			}

@@ -30,15 +30,36 @@ public class ItemModule extends Item {
     public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean p_77624_4_) {
     	if(is.getItem() == mbItemRegister.Item_m_damage) {
     		l.add(EnumChatFormatting.GREEN + "Модуль:");
-    		l.add(EnumChatFormatting.GREEN + "Увеличивает урон на 50");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Увеличивает урон на 50");
     	}
     	if(is.getItem() == mbItemRegister.Item_m_crit_chance) {
     		l.add(EnumChatFormatting.GREEN + "Модуль:");
-    		l.add(EnumChatFormatting.GREEN + "Увеличивает крит шанс на 3%");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Увеличивает крит шанс на 3%");
     	}
     	if(is.getItem() == mbItemRegister.Item_m_crit_cf) {
     		l.add(EnumChatFormatting.GREEN + "Модуль:");
-    		l.add(EnumChatFormatting.GREEN + "Увеличивает крит кооф на 0.05");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Увеличивает крит кооф на 0.05");
+    	}
+    	if(is.getItem() == mbItemRegister.item_m_head) {
+    		l.add(EnumChatFormatting.GREEN + "Модуль:");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Добовляет шанс на выпадение голов");
+    		l.add(EnumChatFormatting.DARK_GREEN + "с некоторых мобов");
+    	}
+    	if(is.getItem() == mbItemRegister.item_m_blind) {
+    		l.add(EnumChatFormatting.GREEN + "Модуль:");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Накладывает слепоту");
+    	}
+    	if(is.getItem() == mbItemRegister.item_m_posion) {
+    		l.add(EnumChatFormatting.GREEN + "Модуль:");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Накладывает отравление");
+    	}
+    	if(is.getItem() == mbItemRegister.item_m_splash3) {
+    		l.add(EnumChatFormatting.GREEN + "Модуль:");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Бьет сплешом в радиусе 3");
+    	}
+    	if(is.getItem() == mbItemRegister.item_m_splash5) {
+    		l.add(EnumChatFormatting.GREEN + "Модуль:");
+    		l.add(EnumChatFormatting.DARK_GREEN + "Бьет сплешом в радиусе 5");
     	}
     }
 	
