@@ -15,7 +15,7 @@ import mbutakov.swordmod.client.ClientProxy;
 import mbutakov.swordmod.client.mbResourceLocation;
 import mbutakov.swordmod.client.gui.GuiOptionsSwordMod;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach;
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -41,7 +41,7 @@ public class ClientEvents {
 	@SubscribeEvent
 	public void itemDamageRemove(ItemTooltipEvent event) {
 		ItemStack is = event.itemStack;
-		if (is.getItem() instanceof Sword) {
+		if (is.getItem() instanceof ItemSwordMb) {
 			for (int i = 0; i < event.toolTip.size(); i++) {
 				if (event.toolTip.get(i).startsWith("§9+")) {
 					event.toolTip.remove(i);
@@ -58,7 +58,7 @@ public class ClientEvents {
 		double posY = Cplayer.posY;
 		double posZ = Cplayer.posZ;
 		if (Cplayer.getHeldItem() != null
-				&& Cplayer.getHeldItem().getItem() instanceof Sword) {
+				&& Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 			if (Cplayer.getHeldItem().getItem() == mbItemRegister.ItemSwordBleach3) {
 				if (Minecraft.getMinecraft().thePlayer.ticksExisted % 2 == 0) {
 					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),
@@ -87,7 +87,7 @@ public class ClientEvents {
 					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),
 							(double) ((float) posY + Cplayer.eyeHeight - 1.1f), (double) ((float) posZ),
 							(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1),
-							(double) ((float) posZ), 0.25F, ((Sword)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f, true);
+							(double) ((float) posZ), 0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f, true);
 				}
 				GL11.glPushMatrix();
 				paramPost.renderer.modelBipedMain.bipedLeftArm.postRender(0.0625F);

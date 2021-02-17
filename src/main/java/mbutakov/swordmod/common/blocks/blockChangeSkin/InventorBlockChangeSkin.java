@@ -1,6 +1,6 @@
 package mbutakov.swordmod.common.blocks.blockChangeSkin;
 
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,7 +18,7 @@ public class InventorBlockChangeSkin extends InventoryBasic {
 
 		if (!this.busy) {
 			ItemStack gunStack = this.getStackInSlot(0);
-			if (gunStack != null && gunStack.getItem() instanceof Sword) {
+			if (gunStack != null && gunStack.getItem() instanceof ItemSwordMb) {
 				if (!gunStack.hasTagCompound()) {
 					return;
 				}

@@ -6,7 +6,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import mbutakov.swordmod.Main;
 import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.mbResourceLocation;
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
@@ -62,7 +62,7 @@ public class RenderItemSwordBleach implements IItemRenderer {
 				double posZ = eop.posZ;
 				World world1 = eop.worldObj;
 				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((Sword)eop.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
 				}
 				//блок меча для клиента у другого человека
 				if (eop.getHeldItem() != null) {
@@ -79,9 +79,9 @@ public class RenderItemSwordBleach implements IItemRenderer {
 		double posZ = Cplayer.posZ;
 		if(mc.gameSettings.thirdPersonView != 0) {
 			if(Cplayer.getHeldItem() != null) {
-				if(Cplayer.getHeldItem().getItem() instanceof Sword) {
+				if(Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 					if(Cplayer.ticksExisted % 1  == 0) {
-						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((Sword)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
 					}
 				}
 			}

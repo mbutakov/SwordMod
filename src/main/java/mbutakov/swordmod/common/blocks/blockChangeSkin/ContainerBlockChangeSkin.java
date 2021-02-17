@@ -2,7 +2,7 @@ package mbutakov.swordmod.common.blocks.blockChangeSkin;
 
 import mbutakov.swordmod.common.SlotModule;
 import mbutakov.swordmod.common.SlotSword;
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -23,8 +23,6 @@ public class ContainerBlockChangeSkin extends Container {
 	      this.world = w;
 	      SlotSword swordSlot = new SlotSword(this.inventory, 0, 9, 48, (SlotSword)null);
 	      this.addSlotToContainer(swordSlot);
-	      
-	      
 	      for(int col = 0; col < 7; ++col) {
 	             this.addSlotToContainer(new SlotModule(this.inventory,  1 +col, 30 + col * 20, 28 + 0, swordSlot));
 	       }

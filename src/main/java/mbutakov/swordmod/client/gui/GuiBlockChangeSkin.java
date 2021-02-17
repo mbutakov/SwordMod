@@ -3,7 +3,7 @@ package mbutakov.swordmod.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import mbutakov.swordmod.common.blocks.blockChangeSkin.ContainerBlockChangeSkin;
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import mbutakov.swordmod.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
@@ -33,9 +33,9 @@ public class GuiBlockChangeSkin extends GuiContainer {
     	fontRendererObj.drawString("Инвентарь", 8, 100 + 2, 0x404040);
     	fontRendererObj.drawString("Модификация меча", 40, 3, 0x404040);
     	ItemStack swordStack = inventorySlots.getSlot(0).getStack();
-        if(swordStack != null && swordStack.getItem() instanceof Sword)
+        if(swordStack != null && swordStack.getItem() instanceof ItemSwordMb)
         {
-         	GuiUtils.renderCenteredText(swordStack.getDisplayName(), xSize/2, 15, 0x404040);
+         	GuiUtils.renderCenteredText(swordStack.getDisplayName(), xSize/2, 17, 0x404040);
         }
     }
     

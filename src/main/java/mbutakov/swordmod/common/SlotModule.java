@@ -1,6 +1,7 @@
 package mbutakov.swordmod.common;
 
-import mbutakov.swordmod.common.items.Sword;
+import mbutakov.swordmod.common.items.ItemModule;
+import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -18,7 +19,7 @@ public class SlotModule extends Slot {
 	}
 
 	public boolean isItemValid(ItemStack stack) {
-		return swordSlot.getHasStack() == true;
+		return swordSlot.getHasStack() == true && stack.getItem() instanceof ItemModule;
 	}
 
 }
