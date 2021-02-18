@@ -113,7 +113,9 @@ public class ItemSwordMb extends ItemSword {
 				if (cs.getCountModules(is)[7] > 0) { 
 					l.add(EnumChatFormatting.AQUA + "Модуль Сплеш атаки 5 " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[7]);
 				}
-				
+				if (cs.getCountModules(is)[8] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль мгновенной смерти " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[8]);
+				}
 				int total = 0;
 				for(int i = 0; i < cs.getCountModules(is).length; i++) {
 					total += cs.getCountModules(is)[i];
@@ -140,7 +142,14 @@ public class ItemSwordMb extends ItemSword {
 		if(cs.getCountModules(is)[4] > 0) {
 			   target.addPotionEffect(new PotionEffect(Potion.blindness.id, 60, 2, true));
 		}
-		
+		if (cs.getCountModules(is)[8] > 0) { 
+			if(cs.getCrit(1)) {
+				if(target instanceof EntityPlayer) {
+					target.setHealth(0);
+					target.setDead();
+				}
+			}
+		}
 		float finalDamage = 0;
 		float addDamage = 0;
 		float finalCritDamage = 0;
@@ -159,17 +168,15 @@ public class ItemSwordMb extends ItemSword {
     {
         if (entity instanceof EntityLivingBase && ((EntityLivingBase)entity).hurtTime == 0 && !((EntityLivingBase)entity).isDead) {
 			if(cs.getCountModules(is)[6] > 0 && cs.getCountModules(is)[7] < 1) {
-				System.out.println("sasd 1");
 	            final int range = 3;
 	            for (final Object obj : player.worldObj.getEntitiesWithinAABB((Class)EntityLivingBase.class, player.boundingBox.expand((double)range, (double)range, (double)range))) {
 	                final EntityLivingBase e = (EntityLivingBase)obj;
 	                if (!obj.equals(player)) {
 	                    e.attackEntityFrom(DamageSource.causeMobDamage((EntityLivingBase)player),( float) cs.getDamageSword(is));
-	                }
-	            }
-			}else if(cs.getCountModules(is)[7] > 0) {
-				System.out.println("sasd");
-	            final int range = 5;
+					}
+				}
+			} else if (cs.getCountModules(is)[7] > 0) {
+				final int range = 5;
 	            for (final Object obj : player.worldObj.getEntitiesWithinAABB((Class)EntityLivingBase.class, player.boundingBox.expand((double)range, (double)range, (double)range))) {
 	                final EntityLivingBase e = (EntityLivingBase)obj;
 	                if (!obj.equals(player)) {
