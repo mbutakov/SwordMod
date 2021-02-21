@@ -77,6 +77,12 @@ public class ItemSwordMb extends ItemSword {
 	
 	}
 	
+    @SideOnly(Side.CLIENT)
+    public boolean isFull3D()
+    {
+        return true;
+    }
+	
 	
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack is, EntityPlayer ep, List l, boolean p_77624_4_) {
@@ -90,7 +96,7 @@ public class ItemSwordMb extends ItemSword {
     			NBTTagCompound nbt = is.getTagCompound();
     			NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
 				if (cs.getCountModules(is)[2] > 0) {
-					l.add(EnumChatFormatting.AQUA + "Модуль крит кооф " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[2]);
+					l.add(EnumChatFormatting.AQUA + "Модуль крит коэффициента " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[2]);
 				}
 				if (cs.getCountModules(is)[0] > 0) {
 					l.add(EnumChatFormatting.AQUA + "Модуль крит шанса " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[0]);

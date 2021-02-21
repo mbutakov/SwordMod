@@ -8,6 +8,7 @@ import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -42,6 +43,9 @@ public class RenderItemSwordBleach3 implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack is, Object... data) {
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityClientPlayerMP Cplayer = mc.thePlayer;
+		
+		
+		
 		GL11.glPushMatrix();
 		if(type == ItemRenderType.INVENTORY) {
 			GL11.glScalef(0.5f, 0.5f, 0.5f);
@@ -64,8 +68,8 @@ public class RenderItemSwordBleach3 implements IItemRenderer {
 				if (eop.getHeldItem() != null) {
 					if (eop.isBlocking()) {
 						GL11.glRotatef(25, 0, 0, 1);
-						GL11.glRotatef(25, 1, 0, 0);
-						GL11.glTranslatef(0.3f, -0.1f, -0f);
+						GL11.glRotatef(35, 1, 0, 0);
+						GL11.glTranslatef(0.3f, 0f, -0f);
 					}
 				}
 			}
@@ -90,21 +94,24 @@ public class RenderItemSwordBleach3 implements IItemRenderer {
 			GL11.glRotatef(40, 0, 1, 0);
 			GL11.glRotatef(-70, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
+			
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
 			GL11.glRotatef(-10, 1, 0, 1);
-			GL11.glTranslatef(0.5F, -0.3F, 0.5F);
+			GL11.glTranslatef(1F, -0.7F, 0.1F);
 			GL11.glRotatef(-220, 0, 1, 0);
 			if(Cplayer.isBlocking()) {
-				GL11.glTranslatef(-1f, 1, -0.2f);
+				GL11.glTranslatef(-1f, 1, -0.4f);
 				GL11.glRotatef(-20, 0, 1, 0);
 				GL11.glRotatef(-50, 1, 0, 0);
 				GL11.glTranslatef(0.7f, -0.9f, -0.5f);
 			}
+			
 		
 		}
 		if(type == ItemRenderType.ENTITY) {
 			GL11.glScalef(0.8f, 0.8f, 0.8f);
 		}
+		
 		Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleach3Tex);
 		mbResourceLocation.SwordBleach3.renderAll();
 		GL11.glEnable(GL11.GL_CULL_FACE);

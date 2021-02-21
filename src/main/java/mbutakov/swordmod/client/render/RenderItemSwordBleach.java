@@ -10,8 +10,10 @@ import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -97,10 +99,10 @@ public class RenderItemSwordBleach implements IItemRenderer {
     				GL11.glRotatef(180, 0, 1, 0);
     			} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
     				GL11.glRotatef(-10, 1, 0, 1);
-    				GL11.glTranslatef(0.5F, -0.3F, 0.5F);
+    				GL11.glTranslatef(1F, -0.7F, 0.2F);
     				GL11.glRotatef(-220, 0, 1, 0);
     				if(Cplayer.isBlocking()) {
-    					GL11.glTranslatef(-1f, 1, -0.2f);
+    					GL11.glTranslatef(-1f, 1, -0.4f);
     					GL11.glRotatef(-20, 0, 1, 0);
     					GL11.glRotatef(-50, 1, 0, 0);
     					GL11.glTranslatef(0.7f, -0.9f, -0.5f);
@@ -111,8 +113,11 @@ public class RenderItemSwordBleach implements IItemRenderer {
     				GL11.glScalef(0.8f, 0.8f, 0.8f);
     			}
     			
+    			
   	    			Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleachTex);
   	    			mbResourceLocation.SwordBleach.renderAll();
+  	    			
+  	    			
 //  	    			GL11.glPushMatrix();
 //			        GL11.glDepthFunc(514);
 //			        GL11.glDisable(2896);

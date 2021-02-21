@@ -60,12 +60,14 @@ public class RenderItemSwordIdk implements IItemRenderer {
 				if(Cplayer.ticksExisted % 1 == 0) {
 					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,2, true, -1f,false);
 				}
+
 				//блок меча для клиента у другого человека
 				if (eop.getHeldItem() != null) {
 					if (eop.isBlocking()) {
-						GL11.glRotatef(25, 0, 0, 1);
-						GL11.glRotatef(25, 1, 0, 0);
-						GL11.glTranslatef(0.3f, -0.1f, -0f);
+						GL11.glRotatef(20, 0, 0, 1);
+						//GL11.glRotatef(45, 1, 0, 0);
+						GL11.glRotatef(45, 1, 0, 0);
+						GL11.glTranslatef(0.25f, 0.3f, -0.4f);
 					}
 				}
 			}
@@ -91,10 +93,10 @@ public class RenderItemSwordIdk implements IItemRenderer {
 			GL11.glRotatef(180, 0, 1, 0);
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {
 			GL11.glRotatef(-10, 1, 0, 1);
-			GL11.glTranslatef(0.5F, -0.3F, 0.5F);
+			GL11.glTranslatef(1F, -0.7F, 0.1F);
 			GL11.glRotatef(-220, 0, 1, 0);
 			if(Cplayer.isBlocking()) {
-				GL11.glTranslatef(-1f, 1, -0.2f);
+				GL11.glTranslatef(-1f, 1, -0.4f);
 				GL11.glRotatef(-20, 0, 1, 0);
 				GL11.glRotatef(-50, 1, 0, 0);
 				GL11.glTranslatef(0.7f, -0.9f, -0.5f);

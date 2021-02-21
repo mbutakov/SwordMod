@@ -63,27 +63,7 @@ public class EntityParticleFireFx extends EntityFX {
     @SideOnly(Side.CLIENT)
     public int getBrightnessForRender(float p_70070_1_)
     {
-        float var2 = ((float)super.particleAge + p_70070_1_) / (float)super.particleMaxAge;
-        if(var2 < 0.0F) {
-           var2 = 0.0F;
-        }
-
-        if(var2 > 1.0F) {
-           var2 = 1.0F;
-        }
-
-        int var3 = super.getBrightnessForRender(p_70070_1_);
-        int var4 = var3 & 255;
-        int var5 = var3 >> 16 & 255;
-        var4 += (int)(var2 * 15.0F * 16.0F);
-        if(var4 > 240) {
-           var4 = 240;
-        }
-
-        if(var4 < 190) {
-           var4 = 190;
-        }
-        return var4 | var5 << 16;
+        return 1;
     }
 
     /**

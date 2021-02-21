@@ -25,6 +25,7 @@ public class mbItemRegister {
 	public static Item item_m_posion;
 	public static Item item_m_blind;
 	public static Item item_m_deathHit;
+	public static Item item_m_effectOn;
 	
 	
 	public static void registerItems() {
@@ -61,6 +62,8 @@ public class mbItemRegister {
 		LanguageRegistry.addName(item_m_blind, "Модуль слепоты");
 		item_m_deathHit = new ItemModule("Module DeathHit","m_deathHit");
 		LanguageRegistry.addName(item_m_deathHit, "Модуль шанса на смерть");
+		item_m_effectOn = new ItemModule("Module Effect","m_effect");
+		LanguageRegistry.addName(item_m_effectOn, "Модуль вкл частиц");
 	
 	}
 
