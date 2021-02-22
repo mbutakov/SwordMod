@@ -57,8 +57,18 @@ public class RenderItemSwordBleach6 implements IItemRenderer {
 				double posY = eop.posY;
 				double posZ = eop.posZ;
 				World world1 = eop.worldObj;
+				float changePosition = 0;
+				if(eop.isBlocking()) {
+					changePosition = 1;
+				}
+				if(eop.swingProgress > 0) {
+					changePosition = 1;
+				}
 				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+					Main.proxy.spawnEffectSword(world1, eop, (double) ((float) posX),(double) ((float) posY + eop.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+							(double) ((float) posX), (double) ((float) posY + eop.eyeHeight - 1f + changePosition/4),(double) ((float) posZ),
+							0.25F, ((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -0.76f - changePosition, false, 3);
+					
 				}
 				//блок меча для клиента у другого человека
 				if (eop.getHeldItem() != null) {
@@ -70,6 +80,13 @@ public class RenderItemSwordBleach6 implements IItemRenderer {
 				}
 			}
 		}
+		float changePosition = 0;
+		if(Cplayer.isBlocking()) {
+			changePosition = 1;
+		}
+		if(Cplayer.swingProgress > 0) {
+			changePosition = 1;
+		}
 		double posX = Cplayer.posX;
 		double posY = Cplayer.posY;
 		double posZ = Cplayer.posZ;
@@ -77,7 +94,9 @@ public class RenderItemSwordBleach6 implements IItemRenderer {
 			if(Cplayer.getHeldItem() != null) {
 				if(Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 					if(Cplayer.ticksExisted % 2  == 0) {
-						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+								(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1f + changePosition/4),(double) ((float) posZ),
+								0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -0.7f - changePosition, false, 3);
 					}
 				}
 			}
@@ -86,7 +105,7 @@ public class RenderItemSwordBleach6 implements IItemRenderer {
 		GL11.glScalef(2.5f, 2.5f, 2.5f);
 		if (type == ItemRenderType.EQUIPPED) {
 			GL11.glTranslatef(0.65F, 0.05F, 0.70F);
-			GL11.glRotatef(40, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
 			GL11.glRotatef(-70, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {

@@ -1,5 +1,6 @@
 package mbutakov.swordmod.common.blocks.blockChangeSkin;
 
+import mbutakov.swordmod.common.items.CharacteristicSword;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
@@ -27,16 +28,16 @@ public class InventorBlockChangeSkin extends InventoryBasic {
 				}
 				if (gunStack != this.lastGunStack) {
 					busy = true;
-					NBTTagCompound attachmentTags = gunStack.stackTagCompound.getCompoundTag("SwordModules");
-					for(int i = 1; i <= 7; i++) {
-						this.setInventorySlotContents(i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + i)));
-					}
-					for(int i = 1; i <= 7; i++) {
-						this.setInventorySlotContents(7 + i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + (i + 7))));
-					}
-					for(int i = 1; i <= 7; i++) {
-						this.setInventorySlotContents(14 + i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + (i + 14))));
-					}
+						NBTTagCompound attachmentTags = gunStack.stackTagCompound.getCompoundTag("SwordModules");
+						for(int i = 1; i <= 7; i++) {
+							this.setInventorySlotContents(i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + i)));
+						}
+						for(int i = 1; i <= 7; i++) {
+							this.setInventorySlotContents(7 + i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + (i + 7))));
+						}
+						for(int i = 1; i <= 7; i++) {
+							this.setInventorySlotContents(14 + i,ItemStack.loadItemStackFromNBT(attachmentTags.getCompoundTag("module_" + (i + 14))));
+						}
 					this.busy = false;
 				}else {
 					NBTTagCompound gunTags = new NBTTagCompound();
@@ -59,6 +60,22 @@ public class InventorBlockChangeSkin extends InventoryBasic {
 		}
 	}
 
+	public boolean hasNbtSwordModules(ItemStack item) {
+		if(item == null) {
+			return false;
+		}
+		if (!item.hasTagCompound()) {
+			return false;
+		}
+		NBTTagCompound nbt = item.getTagCompound();
+		NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
+		if (modulesTags.hasNoTags()) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void writeAttachmentTags(NBTTagCompound attachmentTags, ItemStack attachmentStack, String attachmentName) {
 		NBTTagCompound tags = new NBTTagCompound();
 		if (attachmentStack != null) {

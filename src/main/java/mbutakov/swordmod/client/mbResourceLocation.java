@@ -9,7 +9,8 @@ import net.minecraftforge.client.model.obj.WavefrontObject;
 public class mbResourceLocation {
 
 	   public static final ResourceLocation PortalParticleTexture = new ResourceLocation("mbswordmod", "textures/particle/portal_part.png");
-	
+	   public static final ResourceLocation pp = new ResourceLocation("mbswordmod", "textures/particle/pp.png");
+		
 	   public static final ResourceLocation SwordBleachTex = new ResourceLocation("mbswordmod", "textures/models/BladeTex.png");
 	   public static final ResourceLocation SwordBleach2Tex = new ResourceLocation("mbswordmod", "textures/models/BleachSword1.png");
 	   public static final ResourceLocation SwordBleach3Tex = new ResourceLocation("mbswordmod", "textures/models/BleachSword2.png");

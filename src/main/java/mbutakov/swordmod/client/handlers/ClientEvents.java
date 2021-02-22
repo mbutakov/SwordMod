@@ -6,6 +6,7 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.common.gameevent.InputEvent.KeyInputEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,6 +16,7 @@ import mbutakov.swordmod.client.ClientProxy;
 import mbutakov.swordmod.client.mbResourceLocation;
 import mbutakov.swordmod.client.gui.GuiOptionsSwordMod;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach;
+import mbutakov.swordmod.client.render.RenderItemSwordIdk;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -53,15 +55,27 @@ public class ClientEvents {
 			}
 		}
 	}
+	
+	@SubscribeEvent
+	public void onTickClient(ClientTickEvent event) {
+		if(Minecraft.getMinecraft().thePlayer != null) {
+			if(Minecraft.getMinecraft().theWorld != null) {
+				EntityPlayer player = Minecraft.getMinecraft().thePlayer;
+
+			}
+		}
+	}
+	
 
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
-	public void renderTwoSword(RenderPlayerEvent.Specials.Post paramPost) {
-		EntityPlayer Cplayer = paramPost.entityPlayer;
+	public void renderTwoSword(RenderPlayerEvent.Specials.Post e) {
+		EntityPlayer Cplayer = e.entityPlayer;
 		double posX = Cplayer.posX;
 		double posY = Cplayer.posY;
 		double posZ = Cplayer.posZ;
-		RenderPlayer render = paramPost.renderer;
+		
+		RenderPlayer render = e.renderer;
 		if (Cplayer.getHeldItem() != null && Cplayer.getHeldItem().getItem() instanceof ItemSwordMb && (Cplayer.getHeldItem().getItem() == mbItemRegister.IdkBlade || Cplayer.getHeldItem().getItem() == mbItemRegister.ItemSwordBleach3)  ) {
 			render.modelArmorChestplate.bipedBody.rotateAngleY = 0;
 	    	render.modelArmorChestplate.bipedBody.rotateAngleZ = 0;
@@ -88,18 +102,23 @@ public class ClientEvents {
 			render.modelArmorChestplate.heldItemLeft = render.modelArmor.heldItemLeft = render.modelBipedMain.heldItemLeft = 0;
 		}
 
-		
+		float changePosition = 0;
+		if(Cplayer.isBlocking()) {
+			changePosition = 1;
+		}
+		if(Cplayer.swingProgress > 0) {
+			changePosition = 1;
+		}
 		if (Cplayer.getHeldItem() != null && Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 			
 			if (Cplayer.getHeldItem().getItem() == mbItemRegister.ItemSwordBleach3) {
 				if (Minecraft.getMinecraft().thePlayer.ticksExisted % 2 == 0) {
-					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),
-							(double) ((float) posY + Cplayer.eyeHeight - 1.1f), (double) ((float) posZ),
-							(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1),
-							(double) ((float) posZ), 0.25F, 1, true, -1f, true);
+					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+							(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1f + changePosition/4),(double) ((float) posZ),
+							0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -0.6f - changePosition, true, 2.3f);
 				}
 				GL11.glPushMatrix();
-				paramPost.renderer.modelBipedMain.bipedLeftArm.postRender(0.0625F);
+				e.renderer.modelBipedMain.bipedLeftArm.postRender(0.0625F);
 				GL11.glScalef(0.8f, 0.8f, 0.8f);
 				
 				if(Cplayer.isBlocking()) {
@@ -113,17 +132,16 @@ public class ClientEvents {
 				mbResourceLocation.SwordBleach4.renderAll();
 				GL11.glPopMatrix();
 			}
+			changePosition = MathHelper.sin(changePosition);
 			if (Cplayer.getHeldItem().getItem() == mbItemRegister.IdkBlade) {
-
 				if (Minecraft.getMinecraft().thePlayer.ticksExisted % 2 == 0) {
-					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),
-							(double) ((float) posY + Cplayer.eyeHeight - 1.1f), (double) ((float) posZ),
-							(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1),
-							(double) ((float) posZ), 0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f, true);
+					Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+							(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
+							0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -0.6f - changePosition, true, 2.5f);
 				}
 				GL11.glPushMatrix();
-				ModelBiped biped = paramPost.renderer.modelBipedMain;
-				paramPost.renderer.modelBipedMain.bipedLeftArm.postRender(0.0625F);
+				ModelBiped biped = e.renderer.modelBipedMain;
+				e.renderer.modelBipedMain.bipedLeftArm.postRender(0.0625F);
 				GL11.glScalef(0.8f, 0.8f, 0.8f);
 				if(Cplayer.isBlocking()) {
 					GL11.glRotatef(25, 0, 1, 0);

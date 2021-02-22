@@ -9,8 +9,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
@@ -33,13 +38,36 @@ public class RenderItemSwordIdk implements IItemRenderer {
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack is, ItemRendererHelper helper) {
-		if (type == ItemRenderType.INVENTORY) return false;
 		return true;
 	}
 	
 	
+	
+	public static void  renderItem(ItemRenderType type,ItemStack is) {
+       float f6 = Minecraft.getMinecraft().thePlayer.swingProgress;
+        float f7 = MathHelper.sin(f6 * (float)Math.PI);
+		GL11.glPushMatrix();
+		GL11.glNormal3f(0, 0, 0);
+	    RenderPlayer render;
+	    render = (RenderPlayer) RenderManager.instance.getEntityRenderObject(Minecraft.getMinecraft().thePlayer);
+		GL11.glScalef(2.1f, 2.1f, 2.1f);
+		GL11.glRotatef(-10, 1, 0, 1);
+		GL11.glTranslatef(-0.8F, -0.55F, -1.2F);
+		GL11.glRotatef(-220, 0, 1, 0);
+		GL11.glRotatef(f7 * 90, 1, 0, 0);
+		GL11.glRotatef(f7 * 10, 0, 0, 1);
+		Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.IdkBladeTex);
+		mbResourceLocation.IdkBlade.renderAll();
+		GL11.glPopMatrix();
+	}
+	
+	
+	
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack is, Object... data) {
+		if (type == ItemRenderType.EQUIPPED_FIRST_PERSON) {
+			renderItem(type, is);
+		}
 		Minecraft mc = Minecraft.getMinecraft();
 		EntityClientPlayerMP Cplayer = mc.thePlayer;
 		GL11.glPushMatrix();
@@ -57,8 +85,18 @@ public class RenderItemSwordIdk implements IItemRenderer {
 				double posY = eop.posY;
 				double posZ = eop.posZ;
 				World world1 = eop.worldObj;
+				float changePosition = 0;
+				if(eop.isBlocking()) {
+					changePosition = 1;
+				}
+				if(eop.swingProgress > 0) {
+					changePosition = 1;
+				}
 				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double)((float)posX), (double)((float)posY + eop.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + eop.eyeHeight - 0.8), (double)((float)posZ), 0.2F,2, true, -1f,false);
+					Main.proxy.spawnEffectSword(world1, eop, (double) ((float) posX),(double) ((float) posY + eop.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+							(double) ((float) posX), (double) ((float) posY + eop.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
+							0.25F, ((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -0.6f - changePosition, false, 2.5f);
+					
 				}
 
 				//блок меча для клиента у другого человека
@@ -72,6 +110,13 @@ public class RenderItemSwordIdk implements IItemRenderer {
 				}
 			}
 		}
+		float changePosition = 0;
+		if(Cplayer.isBlocking()) {
+			changePosition = 1;
+		}
+		if(Cplayer.swingProgress > 0) {
+			changePosition = 1;
+		}
 		double posX = Cplayer.posX;
 		double posY = Cplayer.posY;
 		double posZ = Cplayer.posZ;
@@ -79,16 +124,20 @@ public class RenderItemSwordIdk implements IItemRenderer {
 			if(Cplayer.getHeldItem() != null) {
 				if(Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 					if(Cplayer.ticksExisted % 2  == 0) {
-						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 1.1f), (double)((float)posZ ), (double)((float)posX), (double)((float)posY + Cplayer.eyeHeight - 0.8), (double)((float)posZ), 0.2F,((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f,false);
+						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+								(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
+								0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -0.6f - changePosition, false, 2.5f);
 					}
 				}
 			}
 		}
+		
+		
 		GL11.glPushMatrix();
 		GL11.glScalef(2.1f, 2.1f, 2.1f);
 		if (type == ItemRenderType.EQUIPPED) {
 			GL11.glTranslatef(0.65F, 0.1F, 0.70F);
-			GL11.glRotatef(40, 0, 1, 0);
+			GL11.glRotatef(45, 0, 1, 0);
 			GL11.glRotatef(-70, 1, 0, 0);
 			GL11.glRotatef(180, 0, 1, 0);
 		} else if (type == ItemRenderType.EQUIPPED_FIRST_PERSON  && mc.gameSettings.thirdPersonView == 0) {

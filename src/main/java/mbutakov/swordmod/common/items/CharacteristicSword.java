@@ -32,7 +32,7 @@ public class CharacteristicSword {
 	
 	public int[] getCountModules(ItemStack item) {
 		if(item == null) {
-			int gcm[] = {0,0,0,0,0,0,0,0,0};
+			int gcm[] = {0,0,0,0,0,0,0,0,0,0};
 			return gcm ;
 		}
 		int moduleDamage = 0;
@@ -44,6 +44,7 @@ public class CharacteristicSword {
 		int moduleSplash3 = 0;
 		int moduleSplash5 = 0;
 		int moduleDeathHit = 0;
+		int moduleEffect = 0;
 		if (hasNbtSwordModules(item)) {
 			NBTTagCompound nbt = item.getTagCompound();
 			NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
@@ -78,20 +79,23 @@ public class CharacteristicSword {
 						if(module.getUnlocalizedName().equals("item.Module DeathHit")) {
 							moduleDeathHit++;
 						}
+						if(module.getUnlocalizedName().equals("item.Module Effect")) {
+							moduleEffect++;
+						}
 					}
 				}
 			}
 		}
-		String s =  moduleCrit + "/" + moduleDamage + "/" + moduleCritCf + "/" + moduleHead + "/" + moduleBlind + "/" + modulePosion + "/" + moduleSplash3 + "/" + moduleSplash5 + "/" + moduleDeathHit ;
+		String s =  moduleCrit + "/" + moduleDamage + "/" + moduleCritCf + "/" + moduleHead + "/" + moduleBlind + "/" + modulePosion + "/" + moduleSplash3 + "/" + moduleSplash5 + "/" + moduleDeathHit + "/" + moduleEffect;
     	String [] stringModuleCount  = s.split("/");
-    	int [] countModules = {Integer.parseInt(stringModuleCount[0]),Integer.parseInt(stringModuleCount[1]),Integer.parseInt(stringModuleCount[2]),Integer.parseInt(stringModuleCount[3]),Integer.parseInt(stringModuleCount[4]),Integer.parseInt(stringModuleCount[5]),Integer.parseInt(stringModuleCount[6]),Integer.parseInt(stringModuleCount[7]),Integer.parseInt(stringModuleCount[8])};
- 
+    	int [] countModules = new int[stringModuleCount.length];
+    	for(int i = 0; i < stringModuleCount.length; i++) {
+    		countModules[i] = Integer.parseInt(stringModuleCount[i]);
+    	}
 		return countModules;
 		
 		
 	}
-	
-	
 	
 	public boolean hasNbtSwordModules(ItemStack item) {
 		if(item == null) {

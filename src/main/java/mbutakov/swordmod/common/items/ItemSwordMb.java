@@ -77,6 +77,13 @@ public class ItemSwordMb extends ItemSword {
 	
 	}
 	
+	@SideOnly(Side.CLIENT)
+	public CharacteristicSword getCs (ItemStack item) {
+		return this.cs;
+		
+	}
+	
+	
     @SideOnly(Side.CLIENT)
     public boolean isFull3D()
     {
@@ -121,6 +128,9 @@ public class ItemSwordMb extends ItemSword {
 				}
 				if (cs.getCountModules(is)[8] > 0) { 
 					l.add(EnumChatFormatting.AQUA + "Модуль мгновенной смерти " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[8]);
+				}
+				if (cs.getCountModules(is)[9] > 0) { 
+					l.add(EnumChatFormatting.AQUA + "Модуль частиц " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[9]);
 				}
 				int total = 0;
 				for(int i = 0; i < cs.getCountModules(is).length; i++) {

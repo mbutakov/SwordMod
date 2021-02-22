@@ -25,8 +25,8 @@ public class SwordParticle extends EntityFX {
    public boolean tinkle;
    public int blendmode;
    public EntityPlayer player;
-
-   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, float red, float green, float blue,boolean leftHand) {
+   
+   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, float red, float green, float blue,boolean leftHand,double lenght) {
       super(world, d, d1, d2, 0.0D, 0.0D, 0.0D);
       this.shrink = false;
       this.tinkle = false;
@@ -56,8 +56,8 @@ public class SwordParticle extends EntityFX {
       
    }
    
-   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, int type,boolean leftHand) {
-      this(world,player, d, d1, d2, f, 0.0F, 0.0F, 0.0F,leftHand);
+   public SwordParticle(World world,EntityPlayer player, double d, double d1, double d2, float f, int type,boolean leftHand,double lenght) {
+      this(world,player, d, d1, d2, f, 0.0F, 0.0F, 0.0F,leftHand,lenght);
       switch(type) {
       case 0:
          super.particleRed = 0.75F + world.rand.nextFloat() * 0.25F;
@@ -99,14 +99,14 @@ public class SwordParticle extends EntityFX {
    }
 
 	public SwordParticle(World world, EntityPlayer player, double d, double d1, double d2, double x, double y, double z,
-			float f, int type,boolean leftHand) {
-		this(world, player, d, d1, d2, f, type,leftHand);
+			float f, int type,boolean leftHand,double lenght) {
+		this(world, player, d, d1, d2, f, type,leftHand,lenght);
 		if (super.particleMaxAge > 0) {
 			double dx = x - super.posX;
 			double dy = y - super.posY;
 			double dz = z - super.posZ;
-			dx -= 2f * Math.sin(player.renderYawOffset / 180.0F * Math.PI);
-			dz += 2f * Math.cos(player.renderYawOffset / 180.0F * Math.PI);
+			dx -= lenght * Math.sin(player.renderYawOffset / 180.0F * Math.PI);
+			dz += lenght * Math.cos(player.renderYawOffset / 180.0F * Math.PI);
 			super.motionX = dx / (double) super.particleMaxAge;
 			super.motionY = dy / (double) super.particleMaxAge;
 			super.motionZ = dz / (double) super.particleMaxAge;
