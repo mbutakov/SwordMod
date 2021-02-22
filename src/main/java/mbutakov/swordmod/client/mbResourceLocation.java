@@ -19,6 +19,7 @@ public class mbResourceLocation {
 	   public static final ResourceLocation SwordBleach6Tex = new ResourceLocation("mbswordmod", "textures/models/BleachSword_5.png");
 	   public static final ResourceLocation CyanSwordTex = new ResourceLocation("mbswordmod", "textures/models/CyanBlade.png");
 	   public static final ResourceLocation IdkBladeTex = new ResourceLocation("mbswordmod", "textures/models/IDK_Blade.png");
+	   public static final ResourceLocation blockTex = new ResourceLocation("mbswordmod", "textures/blocks/block.png");
 		  
 	   public static final IModelCustom SwordBleach = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/bleach.obj")));
 	   public static final IModelCustom SwordBleach2 = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/BleachSword_1.obj")));
@@ -28,5 +29,6 @@ public class mbResourceLocation {
 	   public static final IModelCustom SwordBleach6 = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/BleachSword_5.obj")));
 	   public static final IModelCustom CyanSword = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/CyanSword.obj")));
 	   public static final IModelCustom IdkBlade = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/IDK_Blade.obj")));
+	   public static final IModelCustom block = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/block.obj")));
 		
 }

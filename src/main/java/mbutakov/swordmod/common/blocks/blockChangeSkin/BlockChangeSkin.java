@@ -34,4 +34,17 @@ public class BlockChangeSkin extends Block implements ITileEntityProvider {
 		return true;
 	}
 	
+    public int getRenderType() {
+        return -1;
+    }
+    
+    public boolean isOpaqueCube() {
+        return false;
+    }
+	
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+    
+	
 }

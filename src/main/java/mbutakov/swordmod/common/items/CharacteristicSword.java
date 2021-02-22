@@ -44,7 +44,11 @@ public class CharacteristicSword {
 		int moduleSplash3 = 0;
 		int moduleSplash5 = 0;
 		int moduleDeathHit = 0;
+		int moduleDeathHitAdmin = 0;
 		int moduleEffect = 0;
+		int moduletrGold = 0;
+		int moduletrSilver = 0;
+		int moduletrRed = 0;
 		if (hasNbtSwordModules(item)) {
 			NBTTagCompound nbt = item.getTagCompound();
 			NBTTagCompound modulesTags = nbt.getCompoundTag("SwordModules");
@@ -82,11 +86,23 @@ public class CharacteristicSword {
 						if(module.getUnlocalizedName().equals("item.Module Effect")) {
 							moduleEffect++;
 						}
+						if(module.getUnlocalizedName().equals("item.Module DeathHitA")) {
+							moduleDeathHit++;
+						}
+						if(module.getUnlocalizedName().equals("item.Module trGold")) {
+							moduletrGold++;
+						}
+						if(module.getUnlocalizedName().equals("item.Module trSilver")) {
+							moduletrSilver++;
+						}
+						if(module.getUnlocalizedName().equals("item.Module trRed")) {
+							moduletrRed++;
+						}
 					}
 				}
 			}
 		}
-		String s =  moduleCrit + "/" + moduleDamage + "/" + moduleCritCf + "/" + moduleHead + "/" + moduleBlind + "/" + modulePosion + "/" + moduleSplash3 + "/" + moduleSplash5 + "/" + moduleDeathHit + "/" + moduleEffect;
+		String s =  moduleCrit + "/" + moduleDamage + "/" + moduleCritCf + "/" + moduleHead + "/" + moduleBlind + "/" + modulePosion + "/" + moduleSplash3 + "/" + moduleSplash5 + "/" + moduleDeathHit + "/" + moduleEffect + "/" + moduleDeathHitAdmin + "/" + moduletrSilver + "/" + moduletrRed + "/" + moduletrGold;
     	String [] stringModuleCount  = s.split("/");
     	int [] countModules = new int[stringModuleCount.length];
     	for(int i = 0; i < stringModuleCount.length; i++) {

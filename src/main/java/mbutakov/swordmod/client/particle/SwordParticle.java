@@ -91,11 +91,18 @@ public class SwordParticle extends EntityFX {
          super.particleBlue = world.rand.nextFloat() * 0.1F;
          break;
       case 6:
-         super.particleRed = 0.8F + world.rand.nextFloat() * 0.2F;
-         super.particleGreen = 0.8F + world.rand.nextFloat() * 0.2F;
-         super.particleBlue = 0.8F + world.rand.nextFloat() * 0.2F;
-      }
-
+         super.particleRed = 0.95F + world.rand.nextFloat() * 0.2F;
+         super.particleGreen = 0F + world.rand.nextFloat() * 0.2F;
+         super.particleBlue = 0.9F + world.rand.nextFloat() * 0.2F;
+      case 7:
+          super.particleRed = 0.37F + world.rand.nextFloat() * 0.2F;
+          super.particleGreen = 0.01F + world.rand.nextFloat() * 0.2F;
+          super.particleBlue = 0.01F + world.rand.nextFloat() * 0.2F;
+	   case 8:
+	       super.particleRed = 0.45F + world.rand.nextFloat() * 0.2F;
+	       super.particleGreen = 0F + world.rand.nextFloat() * 0.2F;
+	       super.particleBlue = 1F + world.rand.nextFloat() * 0.2F;
+	   }
    }
 
 	public SwordParticle(World world, EntityPlayer player, double d, double d1, double d2, double x, double y, double z,
@@ -142,7 +149,7 @@ public class SwordParticle extends EntityFX {
          float f12 = (float)(this.prevPosY + (this.posY - this.prevPosY) * (double)f - interpPosY);
          tessellator.startDrawingQuads();
          tessellator.setBrightness(240);
-         tessellator.setColorRGBA_F(super.particleRed, super.particleGreen, super.particleBlue, 0.085F);
+         tessellator.setColorRGBA_F(super.particleRed, super.particleGreen, super.particleBlue, 0.1F);
          tessellator.addVertexWithUV((double)(f11 - f1 * f10 - f4 * f10), (double)(f12 - f2 * f10), (double)(f13 - f3 * f10 - f5 * f10), 0.0D, 1.0D);
          tessellator.addVertexWithUV((double)(f11 - f1 * f10 + f4 * f10), (double)(f12 + f2 * f10), (double)(f13 - f3 * f10 + f5 * f10), 1.0D, 1.0D);
          tessellator.addVertexWithUV((double)(f11 + f1 * f10 + f4 * f10), (double)(f12 + f2 * f10), (double)(f13 + f3 * f10 + f5 * f10), 1.0D, 0.0D);

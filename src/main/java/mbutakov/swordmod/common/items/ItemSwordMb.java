@@ -132,6 +132,18 @@ public class ItemSwordMb extends ItemSword {
 				if (cs.getCountModules(is)[9] > 0) { 
 					l.add(EnumChatFormatting.AQUA + "Модуль частиц " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[9]);
 				}
+				if (cs.getCountModules(is)[10] > 0) { 
+					l.add(EnumChatFormatting.GOLD + "Модуль мгновенной смерти " + EnumChatFormatting.DARK_PURPLE + "x" + cs.getCountModules(is)[10]);
+				}
+				if (cs.getCountModules(is)[11] > 0) { 
+					l.add(EnumChatFormatting.RED + "Модуль переливания Серебрянный");
+				}
+				if (cs.getCountModules(is)[12] > 0) { 
+					l.add(EnumChatFormatting.RED + "Модуль переливания Красный");
+				}
+				if (cs.getCountModules(is)[13] > 0) { 
+					l.add(EnumChatFormatting.RED + "Модуль переливания Золотой");
+				}
 				int total = 0;
 				for(int i = 0; i < cs.getCountModules(is).length; i++) {
 					total += cs.getCountModules(is)[i];
@@ -166,6 +178,12 @@ public class ItemSwordMb extends ItemSword {
 				}
 			}
 		}
+		if (cs.getCountModules(is)[10] > 0) { 
+				if(target instanceof EntityPlayer) {
+					target.setHealth(0);
+					target.setDead();
+			}
+		}
 		float finalDamage = 0;
 		float addDamage = 0;
 		float finalCritDamage = 0;
@@ -173,8 +191,6 @@ public class ItemSwordMb extends ItemSword {
 			addDamage = (float) (((itemRand.nextFloat() * cs.getDamageSword(is)) / cs.getDamageSword(is)) * 5);
 			finalCritDamage = (float) ((float) addDamage + (cs.getDamageSword(is) * cs.getCritProcent(is)));
 			target.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) attacker), (float) finalCritDamage);
-			((EntityPlayer) attacker).addChatMessage(new ChatComponentText(
-					"Вы нанесли крит атаку + " + (int) (finalCritDamage) + " + " + (int) (cs.getDamageSword(is))));
 
 		}
 		return true;

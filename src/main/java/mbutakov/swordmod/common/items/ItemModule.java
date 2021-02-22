@@ -74,6 +74,11 @@ public class ItemModule extends Item {
 			l.add(EnumChatFormatting.DARK_GREEN + "Шанс мгновенно убить 1%");
 		}
 		
+		if (is.getItem() == mbItemRegister.item_m_deathHitAdmin) {
+			l.add(EnumChatFormatting.GREEN + "Модуль:");
+			l.add(EnumChatFormatting.DARK_GREEN + "Шанс мгновенно убить 100%");
+		}
+		
 		if (is.getItem() == mbItemRegister.item_m_effectOn) {
 			l.add(EnumChatFormatting.GREEN + "Модуль:");
 			l.add(EnumChatFormatting.DARK_GREEN + "Включает частицы");

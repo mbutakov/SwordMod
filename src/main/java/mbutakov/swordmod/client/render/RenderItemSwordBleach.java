@@ -7,6 +7,7 @@ import mbutakov.swordmod.Main;
 import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.ClientProxy;
 import mbutakov.swordmod.client.mbResourceLocation;
+import mbutakov.swordmod.common.items.CharacteristicSword;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -103,7 +104,7 @@ public class RenderItemSwordBleach implements IItemRenderer {
 					if(Cplayer.ticksExisted % 2  == 0) {
 						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
 								(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
-								0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f - changePosition, false, 2.8f);
+								0.25F, 8, true, -1f - changePosition, false, 2.8f);
 					}
 				}
 			}
@@ -135,37 +136,55 @@ public class RenderItemSwordBleach implements IItemRenderer {
     			
   	    			Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleachTex);
   	    			mbResourceLocation.SwordBleach.renderAll();
-  	    			
-  	    			
-//  	    			GL11.glPushMatrix();
-//			        GL11.glDepthFunc(514);
-//			        GL11.glDisable(2896);
-//			        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("textures/misc/enchanted_item_glint.png"));
-//			        GL11.glEnable(3042);
-//			        GL11.glBlendFunc(768, 1);
-//			        float f7 = 0.76F;
-//			        GL11.glColor4f(0.2F * f7, 0.1F * f7, 1F * f7, 1.0F);
-//			        GL11.glMatrixMode(5890);
-//			        GL11.glPushMatrix();
-//			        float f8 = 0.125F;
-//			        GL11.glScalef(f8, f8, f8);
-//			        float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 8.0F;
-//			        GL11.glTranslatef(f9, 0.0F, 0.0F);
-//					mbResourceLocation.SwordBleach.renderAll();
-//			        GL11.glPopMatrix();
-//			        GL11.glPushMatrix();
-//			        GL11.glScalef(f8, f8, f8);
-//			        f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 8.0F;
-//			        GL11.glTranslatef(-f9, 0.0F, 0.0F);
-//			        GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-//			        mbResourceLocation.SwordBleach.renderAll();
-//			        GL11.glPopMatrix();
-//				    GL11.glMatrixMode(5888);
-//					GL11.glPopMatrix();
-//			        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-//			        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-//			        GL11.glEnable(2896);
-//				     GL11.glDepthFunc(515);
+			  	   CharacteristicSword cs = ((ItemSwordMb)is.getItem()).getCs(is);
+			  	   if(cs.getCountModules(is)[11] > 0 || cs.getCountModules(is)[12] > 0 || cs.getCountModules(is)[13] > 0){
+			  		    float r = 0;
+			  		    float g = 0;
+			  		    float b = 0;
+			  		    if(cs.getCountModules(is)[11] > 0) {
+			  		    	r = 1;
+			  		    	g = 1;
+			  		    	b = 1;
+			  		    }
+			  		    if(cs.getCountModules(is)[12] > 0) {
+			  		    	r = 1;
+			  		    	g = 0;
+			  		    	b = 0;
+			  		    }
+			  		    if(cs.getCountModules(is)[13] > 0) {
+					    	r = 1;
+			  		    	g = 255/215;
+			  		    	b = 0;
+			  		    }
+	  	    			GL11.glPushMatrix();
+				        GL11.glDepthFunc(514);
+				        GL11.glDisable(2896);
+				        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("textures/misc/enchanted_item_glint.png"));
+				        GL11.glEnable(3042);
+				        GL11.glBlendFunc(768, 1);
+				        float f7 = 1F;
+				        GL11.glColor4f(r, g, b, 1F);
+				        GL11.glMatrixMode(5890);
+				        GL11.glPushMatrix();
+				        float f8 = 0.125F;
+				        GL11.glScalef(f8, f8, f8);
+				        float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 4.0F;
+				        GL11.glTranslatef(f9, 0.0F, 0.0F);
+				        GL11.glPopMatrix();
+				        GL11.glPushMatrix();
+				        GL11.glScalef(f8, f8, f8);
+				        f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 4.0F;
+				        GL11.glTranslatef(-f9, 0.0F, 0.0F);
+				        GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
+				        mbResourceLocation.SwordBleach.renderAll();
+				        GL11.glPopMatrix();
+					    GL11.glMatrixMode(5888);
+						GL11.glPopMatrix();
+				        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+				        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+				        GL11.glEnable(2896);
+					     GL11.glDepthFunc(515);	   
+				    }
   	    			
     		          
     			GL11.glPopMatrix();

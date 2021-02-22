@@ -20,10 +20,13 @@ import mbutakov.swordmod.client.render.RenderItemSwordBleach5;
 import mbutakov.swordmod.client.render.RenderItemSwordBleach6;
 import mbutakov.swordmod.client.render.RenderItemSwordCyan;
 import mbutakov.swordmod.client.render.RenderItemSwordIdk;
+import mbutakov.swordmod.client.render.RenderTileEntityBlockChangeSkin;
 import mbutakov.swordmod.common.CommonProxy;
+import mbutakov.swordmod.common.blocks.blockChangeSkin.TileEntityBlockChangeSkin;
 import mbutakov.swordmod.common.items.CharacteristicSword;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSword;
@@ -39,6 +42,7 @@ public class ClientProxy extends CommonProxy {
 	
 	public void preInit() {
 		super.preInit();
+	    ClientRegistry.bindTileEntitySpecialRenderer((Class)TileEntityBlockChangeSkin.class, (TileEntitySpecialRenderer)new RenderTileEntityBlockChangeSkin());
 	}
 
 	public void Init() {

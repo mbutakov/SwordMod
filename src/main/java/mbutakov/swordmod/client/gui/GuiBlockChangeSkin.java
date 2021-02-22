@@ -87,18 +87,6 @@ public class GuiBlockChangeSkin extends GuiContainer {
 	        }
 		}
 	        
-//		      for(int row = 0; row < 3; ++row) {
-//		          for(int col = 0; col < 7; ++col) {
-//		              ItemStack itemStack = inventorySlots.getSlot(1 + row * 2 + col).getStack();
-//		        	  if(itemStack != null && itemStack.getItem() != null) {
-//		        	  	  drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + row * 20, 194, 256, 16, 16);
-//		        	  }else {
-//		             	  drawTexturedModalRect(xOrigin + 30 + col * 20, yOrigin + 28 + row * 20, 176, 256, 16, 16);
-//		       		   
-//		        	  }
-//		          }
-//		      }
-	        
 	}
 	
 	
