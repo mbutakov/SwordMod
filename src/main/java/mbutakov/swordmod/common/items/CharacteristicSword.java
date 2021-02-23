@@ -87,7 +87,7 @@ public class CharacteristicSword {
 							moduleEffect++;
 						}
 						if(module.getUnlocalizedName().equals("item.Module DeathHitA")) {
-							moduleDeathHit++;
+							moduleDeathHitAdmin++;
 						}
 						if(module.getUnlocalizedName().equals("item.Module trGold")) {
 							moduletrGold++;

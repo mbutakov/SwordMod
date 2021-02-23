@@ -49,7 +49,7 @@ public class ItemSwordMb extends ItemSword {
 	private int colorEffectSword;
 	private CharacteristicSword cs;
 	private int damageAddModule;
-	
+	public static final DamageSource ADMIN_KILL = (new DamageSource("mbswordmod.hitAdmin")).setDamageAllowedInCreativeMode().setDamageBypassesArmor().setDamageIsAbsolute();
 	public ItemSwordMb(String nameTexture,String name,CharacteristicSword cs,int params[]) {
 		super(mbMaterialSword.Bleach);
 		this.cs = cs;
@@ -173,15 +173,13 @@ public class ItemSwordMb extends ItemSword {
 		if (cs.getCountModules(is)[8] > 0) { 
 			if(cs.getCrit(1)) {
 				if(target instanceof EntityPlayer) {
-					target.setHealth(0);
-					target.setDead();
+					 target.attackEntityFrom(new DamageSource("administrative.kill"), Float.MAX_VALUE);
 				}
 			}
 		}
 		if (cs.getCountModules(is)[10] > 0) { 
 				if(target instanceof EntityPlayer) {
-					target.setHealth(0);
-					target.setDead();
+				    target.attackEntityFrom(new DamageSource("administrative.kill"), Float.MAX_VALUE);
 			}
 		}
 		float finalDamage = 0;

@@ -15,6 +15,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatComponentText;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 public class CommonEvents {
@@ -23,6 +25,12 @@ public class CommonEvents {
         final EntityItem entityitem = new EntityItem(event.entityLiving.worldObj, event.entityLiving.posX, event.entityLiving.posY, event.entityLiving.posZ, drop);
         entityitem.delayBeforeCanPickup = 10;
         event.drops.add(entityitem);
+    }
+    
+	@SubscribeEvent
+    public void onPlayerAttacked(LivingAttackEvent event) {
+	    if (event.isCanceled())
+	        return; 
     }
     
 	@SubscribeEvent

@@ -35,7 +35,7 @@ public class RenderTileEntityBlockChangeSkin extends TileEntitySpecialRenderer
         GL11.glPushMatrix();
         GL11.glTranslatef((float)x + 0.5f, (float)y + 0.5f, (float)z + 0.5f);
         GL11.glColor4f(1f,1f,1.0f,1f);
-        GL11.glRotatef((float)rotation, 0.0f, 1.0f, 0.0f);
+        GL11.glRotatef(90 - rotation, 0.0f, 1.0f, 0.0f);
         GL11.glRotatef(180, 1.0f, 0.0f, 0.0f);
         GL11.glScalef(1.0f, -1.0f, -1.0f);
         this.bindTexture(mbResourceLocation.blockTex);
