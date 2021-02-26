@@ -1,5 +1,7 @@
 package mbutakov.swordmod.client.render;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.FMLClientHandler;
@@ -7,6 +9,7 @@ import mbutakov.swordmod.Main;
 import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.client.ClientProxy;
 import mbutakov.swordmod.client.mbResourceLocation;
+import mbutakov.swordmod.client.config.SwordModConfig;
 import mbutakov.swordmod.common.items.CharacteristicSword;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import net.minecraft.client.Minecraft;
@@ -19,6 +22,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.IItemRenderer.ItemRenderType;
@@ -35,13 +39,21 @@ public class RenderItemSwordBleach implements IItemRenderer {
 	
 	@Override
 	public boolean handleRenderType(ItemStack is, ItemRenderType type) {
-		if (type == ItemRenderType.INVENTORY) return false;
+		if (type == ItemRenderType.INVENTORY) {
+			if(SwordModConfig.offRenderInInventory == 0) {
+				return false ;
+			}
+		}
 		return true;
 	}
 
 	@Override
 	public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack is, ItemRendererHelper helper) {
-		if (type == ItemRenderType.INVENTORY) return false;
+		if (type == ItemRenderType.INVENTORY) {
+			if(SwordModConfig.offRenderInInventory == 0) {
+				return false ;
+			}
+		}
 		return true;
 	}
 	
@@ -52,42 +64,42 @@ public class RenderItemSwordBleach implements IItemRenderer {
 		EntityClientPlayerMP Cplayer = mc.thePlayer;
 		GL11.glPushMatrix();
 		if(type == ItemRenderType.INVENTORY) {
-			GL11.glScalef(0.5f, 0.5f, 0.5f);
-			GL11.glTranslatef(0f, -1f, 0);
-			GL11.glRotatef(-10, 1, 0, 1);
-			GL11.glTranslatef(0.5F, -0.3F, 0.5F);
-			GL11.glRotatef(-220, 0, 1, 0);
+			GL11.glScalef(0.28f, 0.28f, 0.28f);
+			GL11.glRotatef(-38, 1, 0, 1);
+			GL11.glTranslatef(0.5F, -3.4F, 0.5F);
+			GL11.glRotatef(-240, 0, 1, 0);
 		}
-		for(int i = 0; i < data.length; i++) {
-			if(data[i] instanceof EntityOtherPlayerMP) {
-				EntityOtherPlayerMP eop = (EntityOtherPlayerMP) data[i];
-				double posX = eop.posX;
-				double posY = eop.posY;
-				double posZ = eop.posZ;
-				World world1 = eop.worldObj;
-				float changePosition = 0;
-				if(eop.isBlocking()) {
-					changePosition = 1;
-				}
-				if(eop.swingProgress > 0) {
-					changePosition = 1;
-				}
-				if(Cplayer.ticksExisted % 1 == 0) {
-					Main.proxy.spawnEffectSword(world1, eop, (double) ((float) posX),(double) ((float) posY + eop.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
-							(double) ((float) posX), (double) ((float) posY + eop.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
-							0.25F, ((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -1f - changePosition, false, 2.8f);
-					
-				}
-				//блок меча для клиента у другого человека
-				if (eop.getHeldItem() != null) {
-					if (eop.isBlocking()) {
-						GL11.glRotatef(25, 0, 0, 1);
-						GL11.glRotatef(25, 1, 0, 0);
-						GL11.glTranslatef(0.3f, -0.1f, -0f);
+		if(type != ItemRenderType.INVENTORY) {
+			for(int i = 0; i < data.length; i++) {
+				if(data[i] instanceof EntityOtherPlayerMP) {
+					EntityOtherPlayerMP eop = (EntityOtherPlayerMP) data[i];
+					double posX = eop.posX;
+					double posY = eop.posY;
+					double posZ = eop.posZ;
+					World world1 = eop.worldObj;
+					float changePosition = 0;
+					if(eop.isBlocking()) {
+						changePosition = 1;
+					}
+					if(eop.swingProgress > 0) {
+						changePosition = 1;
+					}
+					if(Cplayer.ticksExisted % 1 == 0) {
+						Main.proxy.spawnEffectSword(world1, eop, (double) ((float) posX),(double) ((float) posY + eop.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+								(double) ((float) posX), (double) ((float) posY + eop.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
+								0.25F, ((ItemSwordMb)eop.getHeldItem().getItem()).getColorEffect(), true, -1f - changePosition, false, 2.8f);
+						
+					}
+					//блок меча для клиента у другого человека
+					if (eop.getHeldItem() != null) {
+						if (eop.isBlocking()) {
+							GL11.glRotatef(25, 0, 0, 1);
+							GL11.glRotatef(25, 1, 0, 0);
+							GL11.glTranslatef(0.3f, -0.1f, -0f);
+						}
 					}
 				}
 			}
-		}
 		float changePosition = 0;
 		if(Cplayer.isBlocking()) {
 			changePosition = 1;
@@ -102,12 +114,15 @@ public class RenderItemSwordBleach implements IItemRenderer {
 			if(Cplayer.getHeldItem() != null) {
 				if(Cplayer.getHeldItem().getItem() instanceof ItemSwordMb) {
 					if(Cplayer.ticksExisted % 2  == 0) {
-						Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
-								(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
-								0.25F, 8, true, -1f - changePosition, false, 2.8f);
+						if(type != ItemRenderType.INVENTORY) {
+							Main.proxy.spawnEffectSword(Cplayer.worldObj, Cplayer, (double) ((float) posX),(double) ((float) posY + Cplayer.eyeHeight - 1.1f + changePosition/4), (double) ((float) posZ),
+									(double) ((float) posX), (double) ((float) posY + Cplayer.eyeHeight - 1.2f + changePosition/4),(double) ((float) posZ),
+									0.25F, ((ItemSwordMb)Cplayer.getHeldItem().getItem()).getColorEffect(), true, -1f - changePosition, false, 2.8f);
+						}
 					}
 				}
 			}
+		}
 		}
     	if(is.getItem() == mbItemRegister.ItemSwordBleach) {
     		GL11.glPushMatrix();
@@ -132,66 +147,78 @@ public class RenderItemSwordBleach implements IItemRenderer {
     			if (type == ItemRenderType.ENTITY) {
     				GL11.glScalef(0.8f, 0.8f, 0.8f);
     			}
-    			
-    			
   	    			Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.SwordBleachTex);
   	    			mbResourceLocation.SwordBleach.renderAll();
 			  	   CharacteristicSword cs = ((ItemSwordMb)is.getItem()).getCs(is);
-			  	   if(cs.getCountModules(is)[11] > 0 || cs.getCountModules(is)[12] > 0 || cs.getCountModules(is)[13] > 0){
-			  		    float r = 0;
-			  		    float g = 0;
-			  		    float b = 0;
-			  		    if(cs.getCountModules(is)[11] > 0) {
-			  		    	r = 1;
-			  		    	g = 1;
-			  		    	b = 1;
-			  		    }
-			  		    if(cs.getCountModules(is)[12] > 0) {
-			  		    	r = 1;
-			  		    	g = 0;
-			  		    	b = 0;
-			  		    }
-			  		    if(cs.getCountModules(is)[13] > 0) {
-					    	r = 1;
-			  		    	g = 255/215;
-			  		    	b = 0;
-			  		    }
-	  	    			GL11.glPushMatrix();
-				        GL11.glDepthFunc(514);
-				        GL11.glDisable(2896);
-				        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation("textures/misc/enchanted_item_glint.png"));
-				        GL11.glEnable(3042);
-				        GL11.glBlendFunc(768, 1);
-				        float f7 = 1F;
-				        GL11.glColor4f(r, g, b, 1F);
-				        GL11.glMatrixMode(5890);
-				        GL11.glPushMatrix();
-				        float f8 = 0.125F;
-				        GL11.glScalef(f8, f8, f8);
-				        float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * 4.0F;
-				        GL11.glTranslatef(f9, 0.0F, 0.0F);
-				        GL11.glPopMatrix();
-				        GL11.glPushMatrix();
-				        GL11.glScalef(f8, f8, f8);
-				        f9 = (float)(Minecraft.getSystemTime() % 4873L) / 4873.0F * 4.0F;
-				        GL11.glTranslatef(-f9, 0.0F, 0.0F);
-				        GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
-				        mbResourceLocation.SwordBleach.renderAll();
-				        GL11.glPopMatrix();
-					    GL11.glMatrixMode(5888);
-						GL11.glPopMatrix();
-				        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-				        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-				        GL11.glEnable(2896);
-					     GL11.glDepthFunc(515);	   
-				    }
-  	    			
-    		          
-    			GL11.glPopMatrix();
-    			
+			if (cs.getCountModules(is)[11] > 0 || cs.getCountModules(is)[12] > 0 || cs.getCountModules(is)[13] > 0) {
+				float f8 = 0.125f;
+				float speed = 4f;
+				float r = 0;
+				float g = 0;
+				float b = 0;
+				if (cs.getCountModules(is)[11] > 0) {
+					r = 0.75294117647f;
+					g = 0.75294117647f;
+					b = 0.75294117647f;
+				}
+				if (cs.getCountModules(is)[12] > 0) {
+					r = 1;
+					g = 0;
+					b = 0;
+				}
+				if (cs.getCountModules(is)[13] > 0) {
+					r = 1;
+					g = 255 / 222;
+					b = 0;
+				}
+				if(cs.getCountModules(is)[13] > 0 && cs.getCountModules(is)[12] > 0 && cs.getCountModules(is)[11] > 0 ) {
+					r = 0;
+					g = 255 / 100;
+					b = 0;
+				}
+				
+				GL11.glPushMatrix();
+				GL11.glDepthFunc(514);
+				GL11.glDisable(2896);
+				Minecraft.getMinecraft().renderEngine.bindTexture(mbResourceLocation.glintTex);
+				GL11.glEnable(3042);
+				GL11.glBlendFunc(768, 1);
+				float f7 = 1F;
+				GL11.glColor4f(r, g, b, 1F);
+				GL11.glMatrixMode(5890);
+//		        GL11.glPushMatrix();
+//		        GL11.glScalef(f8, f8, f8);
+//		        float f9 = (float)(Minecraft.getSystemTime() % 3000L) / 3000.0F * speed;
+//		        GL11.glTranslatef(f9, 0.0F, 0.0F);
+//				mbResourceLocation.SwordBleach.renderAll();
+//		        GL11.glPopMatrix();
+				GL11.glPushMatrix();
+				GL11.glScalef(f8, f8, f8);
+				float f9 = (float) (Minecraft.getSystemTime() % 4873L) / 4873.0F * speed;
+				GL11.glTranslatef(-f9, 0.0F, 0.0F);
+				GL11.glRotatef(10.0F, 0.0F, 0.0F, 1.0F);
+				mbResourceLocation.SwordBleach.renderAll();
+				GL11.glPopMatrix();
+				GL11.glMatrixMode(5888);
+				GL11.glPopMatrix();
+				GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+				OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+				GL11.glEnable(2896);
+				GL11.glDepthFunc(515);
+			}
+			GL11.glPopMatrix();
     			
     	}
     	GL11.glPopMatrix();
 		
 	}
+	
+	public Vec3 color(float x){
+		   float r = x * 256;
+		   float g =  x *65536-r;
+		   float b =  x * 16777216-g-r;
+		   return Vec3.createVectorHelper(r, g, b);
+		}
+	
+	
 }

@@ -18,8 +18,9 @@ public class BlockChangeSkin extends Block implements ITileEntityProvider {
 
 	public BlockChangeSkin() {
         super(Material.wood);
-        this.setUnlocalizedName("Block change Skin");
-        this.setTextureName("mbswordmod:changeSkin");
+        this.setBlockName("Block change Skin");
+        this.setHardness(0.5f);
+        this.setBlockTextureName("mbswordmod:changeSkin");
 		setCreativeTab(Main.swordTab);
 	}
 	

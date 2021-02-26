@@ -1,47 +1,30 @@
 package mbutakov.swordmod.common.items;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.UUID;
-import java.util.stream.Collector.Characteristics;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Sound;
 
 import com.google.common.collect.Multimap;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import mbutakov.swordmod.Main;
-import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.mbMaterialSword;
-import mbutakov.swordmod.common.entity.EntityParticleFireFx;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import scala.reflect.internal.Trees.Super;
 
 public class ItemSwordMb extends ItemSword {
 	
@@ -225,7 +208,7 @@ public class ItemSwordMb extends ItemSword {
     {
         Multimap multimap = super.getItemAttributeModifiers();
         multimap.clear();
-        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(itemModifierUUID, "Weapon modifier", cs.getDamageSword(null), 0));
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", cs.getDamageSword(null), 0));
         return multimap;
     }
 	

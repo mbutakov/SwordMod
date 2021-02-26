@@ -131,9 +131,9 @@ public class GuiCustomButton extends GuiButton
     public void drawButton(final Minecraft minecraft, final int mouseX, final int mouseY) {
         if (this.visible) {
             GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-            this.hovered = (mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height);
-            this.isOver = this.getHoverState(this.hovered);
-            final int toolTipWidth = minecraft.fontRendererObj.getStringWidth(this.toolTip);
+            this.field_146123_n = (mouseX >= this.xPosition && mouseY >= this.yPosition && mouseX < this.xPosition + this.width && mouseY < this.yPosition + this.height);
+            this.isOver = this.getHoverState(this.field_146123_n);
+            final int toolTipWidth = minecraft.fontRenderer.getStringWidth(this.toolTip);
 
             if (this.drawBackground) {
             	if (this.isOver == 2) {
@@ -189,6 +189,6 @@ public class GuiCustomButton extends GuiButton
     }
     
     public void func_146113_a(final SoundHandler soundHandler) {
-        soundHandler.playSound((ISound)PositionedSoundRecord.createPositionedSoundRecord(new ResourceLocation("gui.button.press"), 1.0f));
+        soundHandler.playSound((ISound)PositionedSoundRecord.func_147674_a(new ResourceLocation("gui.button.press"), 1.0f));
     }
 }

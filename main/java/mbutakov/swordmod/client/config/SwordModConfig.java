@@ -20,11 +20,13 @@ public class SwordModConfig {
 
 	public static int isOffOtherPlayer = 0;
 	public static int distanceRenderParticle = 32;
+	public static int offRenderInInventory = 0;
 	public static void save() {
 		try (FileOutputStream out = new FileOutputStream(file)) {
 			NBTTagCompound tag = new NBTTagCompound();
 			tag.setInteger("isOffOtherPlayer", isOffOtherPlayer);
 			tag.setInteger("distanceRenderParticle", distanceRenderParticle);
+			tag.setInteger("offRenderInInventory", offRenderInInventory);
 			CompressedStreamTools.writeCompressed(tag, out);
 		} catch (IOException e) {
 			System.out.println("Failed to save client data.");
@@ -42,6 +44,7 @@ public class SwordModConfig {
 			NBTTagCompound tag = CompressedStreamTools.readCompressed(in);
 			isOffOtherPlayer = tag.getInteger("isOffOtherPlayer");
 			distanceRenderParticle = tag.getInteger("distanceRenderParticle");
+			offRenderInInventory = tag.getInteger("offRenderInInventory");
 		} catch (IOException e) {
 			System.out.println("Failed to load client data.");
 			e.printStackTrace();

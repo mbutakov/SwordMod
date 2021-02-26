@@ -2,12 +2,14 @@ package mbutakov.swordmod.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import mbutakov.swordmod.mbItemRegister;
 import mbutakov.swordmod.common.blocks.blockChangeSkin.ContainerBlockChangeSkin;
 import mbutakov.swordmod.common.items.ItemSwordMb;
 import mbutakov.swordmod.utils.GuiUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.ItemRenderer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;

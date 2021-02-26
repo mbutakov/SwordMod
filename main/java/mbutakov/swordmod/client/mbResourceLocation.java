@@ -1,5 +1,6 @@
 package mbutakov.swordmod.client;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import mbutakov.swordmod.utils.ModelWrapperDisplayList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -20,7 +21,9 @@ public class mbResourceLocation {
 	   public static final ResourceLocation CyanSwordTex = new ResourceLocation("mbswordmod", "textures/models/CyanBlade.png");
 	   public static final ResourceLocation IdkBladeTex = new ResourceLocation("mbswordmod", "textures/models/IDK_Blade.png");
 	   public static final ResourceLocation blockTex = new ResourceLocation("mbswordmod", "textures/blocks/block.png");
-		  
+	   public static final ResourceLocation glintTex = new ResourceLocation("textures/misc/enchanted_item_glint.png");
+  
+	   
 	   public static final IModelCustom SwordBleach = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/bleach.obj")));
 	   public static final IModelCustom SwordBleach2 = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/BleachSword_1.obj")));
 	   public static final IModelCustom SwordBleach3 = new ModelWrapperDisplayList((WavefrontObject)AdvancedModelLoader.loadModel(new ResourceLocation("mbswordmod", "models/BleachSword_2.obj")));

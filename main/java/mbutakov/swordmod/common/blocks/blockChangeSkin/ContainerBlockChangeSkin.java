@@ -56,14 +56,12 @@ public class ContainerBlockChangeSkin extends Container {
         int slotCountContainer = this.inventorySlots.size() - 36;
         int slotIdPlusInventory = slotCountContainer + inventorySlots.size();
 		Slot currentSlot = (Slot) super.inventorySlots.get(slotID);
-
 	      if(currentSlot != null && currentSlot.getHasStack()) {
 	          ItemStack slotStack = currentSlot.getStack();
 	          stack = slotStack.copy();
 	          if(slotID >= slotCountContainer) {
 	             return null;
 	          }
-	          
 	          if(slotStack.stackSize == 0) {
 	              currentSlot.putStack((ItemStack)null);
 	           } else {
